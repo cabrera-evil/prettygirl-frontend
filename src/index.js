@@ -7,7 +7,7 @@ const port = process.env.PORT || 9000;
 
 //Database
 const db = require('./config/database');
-db.dbConnection();
+db.connect();
 
 //Cloudinary
 const cloudinary = require('./config/cloudinary');
