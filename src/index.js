@@ -1,16 +1,21 @@
 const express = require('express');
-const userRoutes = require("./routes/category");
 require('dotenv').config();
 
 //Settings
 const app = express();
 const port = process.env.PORT || 9000;
+
+//Database
 const db = require('./config/database');
 db.dbConnection();
 
+//Cloudinary
+const cloudinary = require('./config/cloudinary');
+cloudinary.config();
+
 //Middleware
-app.use(express.json());
-app.use('/api', userRoutes);
+const middleware = require('./middlewares/index');
+middleware.config(app);
 
 //Route
 app.get('/', (req, res) => {
