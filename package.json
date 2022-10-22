@@ -1,5 +1,5 @@
 {
-  "name": "pw-api",
+  "name": "prettygirl-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cabrera-evil/PW-API.git"
+    "url": "git+https://github.com/cabrera-evil/PrettyGirl-API.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cabrera-evil/PW-API/issues"
+    "url": "https://github.com/cabrera-evil/PrettyGirl-API/issues"
   },
-  "homepage": "https://github.com/cabrera-evil/PW-API#readme",
+  "homepage": "https://github.com/cabrera-evil/PrettyGirl-API#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
