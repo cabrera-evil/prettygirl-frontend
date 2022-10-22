@@ -1,10 +1,12 @@
 const express = require('express');
-const mongoose = require("mongoose");
 const userRoutes = require("./routes/category");
 require('dotenv').config();
 
+//Settings
 const app = express();
-const port = process.env.PORT || 9001;
+const port = process.env.PORT || 9000;
+const db = require('./config/database');
+db.dbConnection();
 
 //Middleware
 app.use(express.json());
@@ -14,11 +16,5 @@ app.use('/api', userRoutes);
 app.get('/', (req, res) => {
     res.send('Welcome to my API');
 });
-
-//Mongodb Connection
-mongoose
-    .connect(process.env.MONGODB_CNN)
-    .then(() => { console.log("Connected to MongoDB Atlas") })
-    .catch((err) => { console.log(err) });
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
