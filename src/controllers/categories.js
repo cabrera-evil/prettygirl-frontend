@@ -1,65 +1,93 @@
-const express = require("express");
-const userSchema = require("../models/categories");
+const { response } = require("express");
+const { Category } = require("../models");
 
-const router = express.Router();
+// Get categories - paginate - total - populate
+const getCategories = async (req, res = response) => {
+    const { limit = 5, skip = 0 } = req.query;
+    const query = { status: true };
 
-//Create user
-router.post("/category", (req, res) => {
-    const user = userSchema(req.body);
-    user.save()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const [total, categories] = await Promise.all([
+        Category.countDocuments(query),
+        Category.find(query)
+            .populate("user", "name")
+            .limit(Number(limit))
+            .skip(Number(skip)),
+    ]);
 
-//Get users
-router.get("/category", (req, res) => {
-    userSchema.find()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    res.json({
+        total,
+        categories,
+    });
+};
 
-//Get user by id
-router.get("/category/:id", (req, res) => {
+// Get category - populate {}
+const getCategory = async (req, res = response) => {
     const { id } = req.params;
-    userSchema.findById(id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const category = await Category.findById(id).populate("user", "name");
 
-//Update user
-router.patch("/category/:id", (req, res) => {
-    const id = req.params.id;
-    const { name, age, email } = req.body;
-    userSchema.updateOne({ _id: id }, { $set: { name, age, email } })
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    res.json(category);
+};
 
-//Delete user
-router.delete("/category/:id", (req, res) => {
-    userSchema.findByIdAndDelete(req.params.id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+const createCategory = async (req, res = response) => {
+    const name = req.body.name.toUpperCase();
 
-module.exports = router;
+    // Revisar si existe la categoria
+    const categoryDB = await Category.findOne({ name });
+
+    if (categoryDB) {
+        return res.status(400).json({
+            msg: `La categoria ${categoryDB.name}, ya existe`,
+        });
+    }
+
+    // Generate data to save
+    const data = {
+        name,
+        user: req.user._id,
+    };
+
+    const category = new Category(data);
+
+    // Saving in db
+    await category.save();
+
+    res.status(201).json(category);
+};
+
+// Update category
+const updateCategory = async (req, res = response) => {
+    const { id } = req.params;
+    const { status, user, ...data } = req.body;
+
+    data.name = data.name.toUpperCase();
+    data.user = req.user._id;
+
+    const category = await Category.findByIdAndUpdate(id, data, {
+        new: true,
+    });
+
+    res.json(category);
+};
+
+//  Delete category - status:false
+const deleteCategory = async (req, res = response) => {
+    const { id } = req.params;
+
+    const categoryDB = await Category.findByIdAndUpdate(
+        id,
+        { status: false },
+        {
+            new: true,
+        }
+    );
+
+    res.json(categoryDB);
+};
+
+module.exports = {
+    getCategories,
+    getCategory,
+    createCategory,
+    updateCategory,
+    deleteCategory,
+};
