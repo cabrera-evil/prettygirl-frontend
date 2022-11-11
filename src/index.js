@@ -1,25 +1,6 @@
-const express = require('express');
-require('dotenv').config();
+require("dotenv").config();
+const Server = require("./models/server");
 
-//Settings
-const app = express();
-const port = process.env.PORT || 9000;
+const server = new Server();
 
-//Database
-const db = require('./config/database');
-db.connect();
-
-//Cloudinary
-const cloudinary = require('./config/cloudinary');
-cloudinary.config();
-
-//Middleware
-const middleware = require('./middlewares/index');
-middleware.config(app);
-
-//Route
-app.get('/', (req, res) => {
-    res.send('Welcome to my API');
-});
-
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+server.listen();
