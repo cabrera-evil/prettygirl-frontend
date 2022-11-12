@@ -43,7 +43,7 @@ const productPost = async (req, res) => {
 // Update category
 const productPut = async (req, res = response) => {
     const { id } = req.params;
-    const { status, user, ...data } = req.body;
+    const { name, category, size, color, gender, available, amount, price, picture, ...data } = req.body;
 
     if (data.name) {
         data.name = data.name.toUpperCase();

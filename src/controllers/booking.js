@@ -31,7 +31,7 @@ const bookingPost = async (req, res) => {
 
 const bookingPut = async (req, res) => {
     const { id } = req.params;
-    const { _id, password, google, email, ...info } = req.body;
+    const { user, address, delivery, date, estimatedDelivery, ...info } = req.body;
 
     const BookingDB = await Booking.findByIdAndUpdate(id, info);
 

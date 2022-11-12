@@ -39,7 +39,7 @@ const categoryPost = async (req, res) => {
 // Update category
 const categoryPut = async (req, res) => {
     const { id } = req.params;
-    const { status, user, ...data } = req.body;
+    const { _id, name, picture, ...data } = req.body;
 
     data.name = data.name.toUpperCase();
     data.user = req.user._id;

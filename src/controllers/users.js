@@ -36,7 +36,7 @@ const usersPost = async (req, res) => {
 
 const usersPut = async (req, res) => {
     const { id } = req.params;
-    const { _id, password, google, email, ...info } = req.body;
+    const { name, dui, email, phone, address, password, role, ...info } = req.body;
 
     // Validate againt schema
     if (password) {
