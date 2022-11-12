@@ -6,7 +6,7 @@ const bookingGet = async (req = request, res = response) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
-    const [total, Bookings] = await Promise.all([
+    const [total, Booking] = await Promise.all([
         Booking.countDocuments(query),
         Booking.find(query).limit(Number(limit)).skip(Number(skip)),
     ]);
@@ -41,7 +41,7 @@ const bookingPut = async (req, res) => {
 const bookingDelete = async (req, res = response) => {
     const { id } = req.params;
 
-    const BookingDB = await Booking.findByIdAndDelete(id, { status: false });
+    const BookingDB = await Booking.findByIdAndUpdate(id, { status: false });
 
     res.json({
         BookingDB,
