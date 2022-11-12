@@ -1,65 +1,56 @@
-const express = require("express");
-const userSchema = require("../models/booking");
+const { response, request } = require("express");
 
-const router = express.Router();
+const Booking = require("../models/booking");
 
-//Create user
-router.post("/booking", (req, res) => {
-    const user = userSchema(req.body);
-    user.save()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+const bookingGet = async (req = request, res = response) => {
+    const { limit = 5, skip = 0 } = req.query;
+    const query = { status: true };
 
-//Get users
-router.get("/booking", (req, res) => {
-    userSchema.find()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const [total, Bookings] = await Promise.all([
+        Booking.countDocuments(query),
+        Booking.find(query).limit(Number(limit)).skip(Number(skip)),
+    ]);
 
-//Get user by id
-router.get("/booking/:id", (req, res) => {
+    res.json({
+        total,
+        bookings,
+    });
+};
+
+const bookingPost = async (req, res) => {
+    const {user, address, delivery, date, estimatedDelivery} = req.body;
+    const booking = new Booking({user, address, delivery, date, estimatedDelivery});
+
+    // Save in db
+    await booking.save();
+
+    res.json({
+        booking,
+    });
+};
+
+const bookingPut = async (req, res) => {
     const { id } = req.params;
-    userSchema.findById(id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const { _id, password, google, email, ...info } = req.body;
 
-//Update user
-router.patch("/booking/:id", (req, res) => {
-    const id = req.params.id;
-    const { name, age, email } = req.body;
-    userSchema.updateOne({ _id: id }, { $set: { name, age, email } })
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const BookingDB = await Booking.findByIdAndUpdate(id, info);
 
-//Delete user
-router.delete("/booking/:id", (req, res) => {
-    userSchema.findByIdAndDelete(req.params.id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    res.json(BookingDB);
+};
 
-module.exports = router;
+const bookingDelete = async (req, res = response) => {
+    const { id } = req.params;
+
+    const BookingDB = await Booking.findByIdAndDelete(id, { status: false });
+
+    res.json({
+        BookingDB,
+    });
+};
+
+module.exports = {
+    bookingGet,
+    bookingPost,
+    bookingPut,
+    bookingDelete,
+};
