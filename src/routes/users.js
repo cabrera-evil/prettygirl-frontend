@@ -24,14 +24,14 @@ router.get("/", usersGet);
 router.post(
     "/",
     [
-        check("name", "El nombre es obligatorio").not().isEmpty(),
-        check("dui", "El DUI es obligatorio").not().isEmpty(),
+        check("name", "Name is obligatory").not().isEmpty(),
+        check("dui", "DUI is obligatory").not().isEmpty(),
         check("dui").custom(duiExist),
-        check("email", "El email no es válido").isEmail(),
+        check("email", "Invalid email").isEmail(),
         check("email").custom(emailExist),
-        check("phone", "El teléfono es obligatorio").not().isEmpty(),
-        check("address", "La dirección es obligatoria").not().isEmpty(),
-        check("password", "La contraseña debe tener mas de 6 letras").isLength({
+        check("phone", "Phone is obligatory").not().isEmpty(),
+        check("address", "Address is obligatory").not().isEmpty(),
+        check("password", "The password must have more than 6 letters").isLength({
             min: 6,
         }),
         validateFields,
@@ -42,7 +42,7 @@ router.post(
 router.put(
     "/:id",
     [
-        check("id", "No es un ID valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(userExistByID),
         validateFields,
     ],
@@ -55,7 +55,7 @@ router.delete(
         validateJWT,
         // isAdminRole,
         hasRole("admin"),
-        check("id", "No es un ID valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(userExistByID),
         validateFields,
     ],

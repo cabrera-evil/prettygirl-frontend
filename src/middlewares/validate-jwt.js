@@ -7,11 +7,11 @@ const validateJWT = async (req = request, res = response, next) => {
   const token = req.header("x-token");
 
   if (!token) {
-    return res.status(401).json({ msg: "No hay token" });
+    return res.status(401).json({ msg: "You don't have token" });
   }
 
   try {
-    const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+    const { uid } = jwt.verify(token, process.env.PRIVATEKEY);
 
     // read user from db
     const user = await User.findById(uid);
@@ -20,19 +20,19 @@ const validateJWT = async (req = request, res = response, next) => {
     if (!user) {
       return res
         .status(404)
-        .json({ msg: "Token no válido - Usuario no encontrado" });
+        .json({ msg: "Invalid token - User not fount" });
     }
 
     // check if uid has status true
     if (!user.status) {
-      res.status(401).json({ msg: "Token no válido - Usuario inactivo" });
+      res.status(401).json({ msg: "Invalid token - Inactive user" });
     }
 
     req.user = user;
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ msg: "Token no válido" });
+    res.status(401).json({ msg: "Invalid token" });
   }
 };
 

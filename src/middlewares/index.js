@@ -4,8 +4,8 @@ const validateFileToUpload = require("../middlewares/validate-file");
 const validateRoles = require("../middlewares/validate-roles");
 
 module.exports = {
-  ...validateFields,
-  ...validateJWT,
-  ...validateRoles,
-  ...validateFileToUpload,
+    ...validateFields,
+    ...validateJWT,
+    ...validateRoles,
+    ...validateFileToUpload,
 };

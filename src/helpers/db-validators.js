@@ -7,14 +7,14 @@ const emailExist = async (email = "") => {
   const emailExist = await User.findOne({ email });
 
   if (emailExist) {
-    throw new Error(`El email: ${email} ya esta registrado`);
+    throw new Error(`Email: ${email} already exist`);
   }
 };
 
 const userExistByID = async (id = "") => {
   const userExist = await User.findById(id);
   if (!userExist) {
-    throw new Error(`El usuario con ID:${id} no existe`);
+    throw new Error(`User ID:${id} does not exist`);
   }
 };
 
@@ -22,28 +22,28 @@ const duiExist = async (dui = "") => {
   const duiExist = await User.findOne({ dui });
 
   if (duiExist) {
-    throw new Error(`El dui: ${dui} ya esta registrado`);
+    throw new Error(`DUI: ${dui} already exist`);
   }
 };
 
 const categoryExistByID = async (id = "") => {
   const categoryExist = await Category.findById(id);
   if (!categoryExist) {
-    throw new Error(`La categoria con ID:${id} no existe`);
+    throw new Error(`Category ID:${id} does not exist`);
   }
 };
 
 const productExistByID = async (id = "") => {
   const productExist = await Product.findById(id);
   if (!productExist) {
-    throw new Error(`El producto con ID:${id} no existe`);
+    throw new Error(`Product ID:${id} does not exist`);
   }
 };
 
 const bookingExistByID = async (id = "") => {
   const bookingExist = await booking.findById(id);
   if (!bookingExist) {
-    throw new Error(`La reserva con ID:${id} no existe`);
+    throw new Error(`Booking ID:${id} does not exist`);
   }
 };
 
@@ -51,7 +51,7 @@ const bookingExistByID = async (id = "") => {
 const allowedCollections = (collection = "", collections = []) => {
   const included = collections.includes(collection);
   if (!included) {
-    throw new Error(`La coleccion ${collection} no esta permitida`);
+    throw new Error(`Collection ${collection} not allowed`);
   }
   return true;
 };

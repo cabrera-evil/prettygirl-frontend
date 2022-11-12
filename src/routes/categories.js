@@ -20,7 +20,7 @@ router.get("/", categoriesGet);
 router.get(
     "/:id",
     [
-        check("id", "No es un ID de Mongo Valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
@@ -32,7 +32,7 @@ router.post(
     "/",
     [
         validateJWT,
-        check("name", "El nombre es obligatorio").not().isEmpty(),
+        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
@@ -44,7 +44,7 @@ router.put(
     "/:id",
     [
         validateJWT,
-        check("name", "El nombre es obligatorio").not().isEmpty(),
+        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
@@ -57,7 +57,7 @@ router.delete(
     [
         validateJWT,
         isAdminRole,
-        check("id", "No es un ID de Mongo Valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],

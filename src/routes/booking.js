@@ -19,7 +19,7 @@ router.get("/", bookingGet);
 router.get(
     "/:id",
     [
-        check("id", "No es un ID de Mongo Valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],
@@ -31,7 +31,7 @@ router.post(
     "/",
     [
         validateJWT,
-        check("name", "El nombre es obligatorio").not().isEmpty(),
+        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],
@@ -43,7 +43,7 @@ router.put(
     "/:id",
     [
         validateJWT,
-        check("name", "El nombre es obligatorio").not().isEmpty(),
+        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],
@@ -56,7 +56,7 @@ router.delete(
     [
         validateJWT,
         isAdminRole,
-        check("id", "No es un ID de Mongo Valido").isMongoId(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],
