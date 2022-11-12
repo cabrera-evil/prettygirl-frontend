@@ -62,7 +62,6 @@ class Server {
     this.app.use(this.paths.products, require("../routes/products"));
     this.app.use(this.paths.booking, require("../routes/booking"));
     this.app.use(this.paths.users, require("../routes/users"));
-    
   }
 
   listen() {
