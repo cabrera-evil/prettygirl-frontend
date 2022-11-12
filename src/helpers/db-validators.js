@@ -2,6 +2,14 @@ const User = require("../models/user");
 const Category = require("../models/category");
 const Product = require("../models/product");
 const Booking = require("../models/booking");
+const role = require("../models/role");
+
+const isRoleValid = async (role = "") => {
+  const roleExist = await Role.findOne({ role });
+  if (!roleExist) {
+    throw new Error(`Role: ${role} not registered in DB`);
+  }
+};
 
 const emailExist = async (email = "") => {
   const emailExist = await User.findOne({ email });
@@ -57,6 +65,7 @@ const allowedCollections = (collection = "", collections = []) => {
 };
 
 module.exports = { 
+  isRoleValid,
   emailExist,
   userExistByID,
   duiExist,

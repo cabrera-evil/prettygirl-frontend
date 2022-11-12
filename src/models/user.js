@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: true
+        default: "CLIENT_ROLE"
     },
 });
 
