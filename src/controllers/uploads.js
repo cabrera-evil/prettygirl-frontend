@@ -6,13 +6,13 @@ const cloudinary = require("../config/cloudinary");
 const { response } = require("express");
 const { uploadFile } = require("../helpers");
 
-const { User, Product } = require("../models");
+const Category = require("../models/category");
+const Product = require("../models/product");
 
 const loadFile = async (req, res = response) => {
     try {
         // Images only
         const name = await uploadFile(req.files, undefined, "images");
-        // const name = await uploadFile(req.files, ["txt", "md"], "texts");
         res.json({ name });
     } catch (error) {
         res.status(400).send({ msg: error.msg });
@@ -25,18 +25,18 @@ const updateImage = async (req, res = response) => {
     let model;
 
     switch (collection) {
-        case "users":
-            model = await User.findById(id);
+        case "categories":
+            model = await Category.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El usuario no existe" });
+                return res.status(400).json({ msg: "The category does not exist" });
             }
             break;
         case "products":
             model = await Product.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El producto no existe" });
+                return res.status(400).json({ msg: "The product does not exist" });
             }
             break;
         default:
@@ -73,18 +73,18 @@ const updateImageCloudinary = async (req, res = response) => {
     let model;
 
     switch (collection) {
-        case "users":
-            model = await User.findById(id);
+        case "categories":
+            model = await Category.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El usuario no existe" });
+                return res.status(400).json({ msg: "The category does not exist" });
             }
             break;
         case "products":
             model = await Product.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El producto no existe" });
+                return res.status(400).json({ msg: "The product does not exist" });
             }
             break;
         default:
@@ -117,18 +117,18 @@ const showImage = async (req, res = response) => {
     let model;
 
     switch (collection) {
-        case "users":
-            model = await User.findById(id);
+        case "categories":
+            model = await Category.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El usuario no existe" });
+                return res.status(400).json({ msg: "The category does not exist" });
             }
             break;
         case "products":
             model = await Product.findById(id);
 
             if (!model) {
-                return res.status(400).json({ msg: "El producto no existe" });
+                return res.status(400).json({ msg: "The product does not exist" });
             }
             break;
         default:

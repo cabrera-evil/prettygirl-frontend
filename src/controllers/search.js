@@ -1,6 +1,9 @@
 const { response } = require("express");
 const { ObjectId } = require("mongoose").Types;
-const { User, Category, Product } = require("../models");
+const User = require("../models/user");
+const Category = require("../models/category");
+const Product = require("../models/product");
+const Booking = require("../models/booking");
 
 const allowedCollections = ["products", "categories", "users", "roles"];
 
@@ -62,7 +65,7 @@ const search = (req, res = response) => {
 
     if (!allowedCollections.includes(collection)) {
         return res.status(400).json({
-            msg: `Las colecciones permitidas son ${allowedCollections}`,
+            msg: `Allowed collections: ${allowedCollections}`,
         });
     }
 
@@ -76,12 +79,32 @@ const search = (req, res = response) => {
         case "categories":
             searchCategories(term, res);
             break;
-
+        case "booking":
+            searchBooking(term, res);
+            break;
         default:
             res.status(500).json({
-                msg: "Error al buscar",
+                msg: "Search error",
             });
     }
+};
+
+const searchBooking = async (term = "", res = response) => {
+    const isMongoID = ObjectId.isValid(term); // true
+
+    if (isMongoID) {
+        const booking = await Booking.findById(term).populate("category", "name");
+        return res.json({ results: booking ? [booking] : [] });
+    }
+
+    const regex = new RegExp(term, "i");
+
+    const booking = await Booking.find({
+        $or: [{ name: regex }],
+        $and: [{ status: true }],
+    }).populate("category", "name");
+
+    return res.json({ results: booking });
 };
 
 module.exports = {
