@@ -2,7 +2,7 @@ const User = require("../models/user");
 const Category = require("../models/category");
 const Product = require("../models/product");
 const Booking = require("../models/booking");
-const role = require("../models/role");
+const Role = require("../models/role");
 
 const isRoleValid = async (role = "") => {
   const roleExist = await Role.findOne({ role });
@@ -49,7 +49,7 @@ const productExistByID = async (id = "") => {
 };
 
 const bookingExistByID = async (id = "") => {
-  const bookingExist = await booking.findById(id);
+  const bookingExist = await Booking.findById(id);
   if (!bookingExist) {
     throw new Error(`Booking ID:${id} does not exist`);
   }
