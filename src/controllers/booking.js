@@ -41,7 +41,7 @@ const bookingPut = async (req, res) => {
 const bookingDelete = async (req, res = response) => {
     const { id } = req.params;
 
-    const BookingDB = await Booking.findByIdAndUpdate(id, { status: false });
+    const BookingDB = await Booking.findByIdAndDelete(id);
 
     res.json({
         BookingDB,

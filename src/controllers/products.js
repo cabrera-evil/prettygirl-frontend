@@ -62,15 +62,9 @@ const productPut = async (req, res = response) => {
 const productDelete = async (req, res = response) => {
     const { id } = req.params;
 
-    const productDeleted = await Product.findByIdAndUpdate(
-        id,
-        { status: false },
-        {
-            new: true,
-        }
-    );
+    const productDB = await Product.findByIdAndDelete(id);
 
-    res.json(productDeleted);
+    res.json(productDB);
 };
 
 module.exports = {

@@ -73,13 +73,7 @@ const categoryPut = async (req, res) => {
 const categoryDelete = async (req, res) => {
     const { id } = req.params;
 
-    const categoryDB = await Category.findByIdAndUpdate(
-        id,
-        { status: false },
-        {
-            new: true,
-        }
-    );
+    const categoryDB = await Category.findByIdAndDelete(id);
 
     res.json(categoryDB);
 };
