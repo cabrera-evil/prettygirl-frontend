@@ -19,8 +19,8 @@ const usersGet = async (req = request, res = response) => {
 };
 
 const usersPost = async (req, res) => {
-    const {name, dui, email, phone, address, password, role} = req.body;
-    const user = new User({name, dui, email, phone, address, password, role});
+    const { name, dui, email, phone, address, password, role } = req.body;
+    const user = new User({ name, dui, email, phone, address, password, role });
 
     // Encrypt password
     const salt = bcrypt.genSaltSync();
@@ -58,7 +58,7 @@ const usersPatch = (req, res = response) => {
 const usersDelete = async (req, res = response) => {
     const { id } = req.params;
 
-    const userDB = await User.findByIdAndUpdate(id, { status: false });
+    const userDB = await User.findByIdAndDelete(id);
 
     res.json({
         userDB,

@@ -55,7 +55,7 @@ router.delete(
     "/:id",
     [
         validateJWT,
-        hasRole("ADMIN_ROLE", "CLIENT_ROLE", "ANOTHER_ROLE"),
+        hasRole("ADMIN_ROLE", "CLIENT_ROLE"),
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(userExistByID),
         validateFields,
