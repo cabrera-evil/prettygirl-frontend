@@ -3,18 +3,18 @@ const { check } = require("express-validator");
 // const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
 const {
-    createCategory,
-    getCategories,
+    categoriesGet,
     getCategory,
-    updateCategory,
-    deleteCategory,
+    categoryPost,
+    categoryPut,
+    categoryDelete,
 } = require("../controllers/categories");
 // const { categoryExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
 // Obtener todas las categorias - publico
-router.get("/", getCategories);
+router.get("/", categoriesGet);
 
 // Obtener una categoria por id - publico
 router.get(
@@ -35,7 +35,7 @@ router.post(
     //     check("name", "El nombre es obligatorio").not().isEmpty(),
     //     validateFields,
     // ],
-    createCategory
+    categoryPost
 );
 
 // Actualizar categoria - privado - cualquier persona con un token valido
@@ -47,7 +47,7 @@ router.put(
     //     check("id").custom(categoryExistByID),
     //     validateFields,
     // ],
-    updateCategory
+    categoryPut
 );
 
 // Eliminar categoria - admin
@@ -60,7 +60,7 @@ router.delete(
     //     check("id").custom(categoryExistByID),
     //     validateFields,
     // ],
-    deleteCategory
+    categoryDelete
 );
 
 module.exports = router;

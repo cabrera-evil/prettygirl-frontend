@@ -3,11 +3,11 @@ const { check } = require("express-validator");
 // const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
 const {
-    createProduct,
-    getProducts,
+    productsGet,
     getProduct,
-    updateProduct,
-    deleteProduct,
+    productPost,
+    productPut,
+    productDelete,
 } = require("../controllers/products");
 // const {
 //     categoryExistByID,
@@ -17,7 +17,7 @@ const {
 const router = Router();
 
 // Obtener todas las categorias - publico
-router.get("/", getProducts);
+router.get("/", productsGet);
 
 // Obtener una categoria por id - publico
 router.get(
@@ -40,7 +40,7 @@ router.post(
     //     check("category").custom(categoryExistByID),
     //     validateFields,
     // ],
-    createProduct
+    productPost
 );
 
 // Actualizar producto - privado - cualquier persona con un token valido
@@ -52,7 +52,7 @@ router.put(
     //     check("id").custom(productExistByID),
     //     validateFields,
     // ],
-    updateProduct
+    productPut
 );
 
 // Eliminar categoria - admin
@@ -65,7 +65,7 @@ router.delete(
     //     check("id").custom(productExistByID),
     //     validateFields,
     // ],
-    deleteProduct
+    productDelete
 );
 
 module.exports = router;

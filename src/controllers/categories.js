@@ -1,7 +1,7 @@
 const Category = require("../models/category");
 
 // Get categories - paginate - total - populate
-const getCategories = async (req, res) => {
+const categoriesGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
@@ -26,7 +26,7 @@ const getCategory = async (req, res) => {
     res.json(category);
 };
 
-const createCategory = async (req, res) => {
+const categoryPost = async (req, res) => {
     const {_id, name, picture} = req.body;
     const category = new Category({_id, name, picture});
 
@@ -37,7 +37,7 @@ const createCategory = async (req, res) => {
 };
 
 // Update category
-const updateCategory = async (req, res) => {
+const categoryPut = async (req, res) => {
     const { id } = req.params;
     const { status, user, ...data } = req.body;
 
@@ -52,7 +52,7 @@ const updateCategory = async (req, res) => {
 };
 
 //  Delete category - status:false
-const deleteCategory = async (req, res) => {
+const categoryDelete = async (req, res) => {
     const { id } = req.params;
 
     const categoryDB = await Category.findByIdAndUpdate(
@@ -67,9 +67,9 @@ const deleteCategory = async (req, res) => {
 };
 
 module.exports = {
-    getCategories,
+    categoriesGet,
     getCategory,
-    createCategory,
-    updateCategory,
-    deleteCategory,
+    categoryPost,
+    categoryPut,
+    categoryDelete,
 };

@@ -3,7 +3,7 @@ const { body } = require("express-validator");
 const Product = require("../models/product");
 
 // Get products - paginate - total - populate
-const getProducts = async (req, res = response) => {
+const productsGet = async (req, res = response) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
@@ -28,7 +28,7 @@ const getProduct = async (req, res = response) => {
     res.json(product);
 };
 
-const createProduct = async (req, res) => {
+const productPost = async (req, res) => {
     const { name, category, size, color, gender, available, amount, price, picture } = req.body;
     const product = new Product({name, category, size, color, gender, available, amount, price, picture});
 
@@ -41,7 +41,7 @@ const createProduct = async (req, res) => {
 };
 
 // Update category
-const updateProduct = async (req, res = response) => {
+const productPut = async (req, res = response) => {
     const { id } = req.params;
     const { status, user, ...data } = req.body;
 
@@ -59,7 +59,7 @@ const updateProduct = async (req, res = response) => {
 };
 
 //  Delete category - status:false
-const deleteProduct = async (req, res = response) => {
+const productDelete = async (req, res = response) => {
     const { id } = req.params;
 
     const productDeleted = await Product.findByIdAndUpdate(
@@ -74,9 +74,9 @@ const deleteProduct = async (req, res = response) => {
 };
 
 module.exports = {
-    getProducts,
+    productsGet,
     getProduct,
-    createProduct,
-    updateProduct,
-    deleteProduct,
+    productPost,
+    productPut,
+    productDelete,
 };
