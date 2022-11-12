@@ -3,7 +3,7 @@ Installation
 
 You must install the required packages by running the following command:
 
-    npm i
+        npm i
 
 Using
 -----
@@ -19,28 +19,28 @@ You can also run
 Application Path
 -----------
 
-    this.paths = {
-        auth: "/api/auth",
-        search: "/api/search",
-        uploads: "/api/uploads",
-        categories: "/api/categories",
-        products: "/api/products",
-        booking: "/api/booking",
-        users: "/api/users",
-    };
+        this.paths = {
+            auth: "/api/auth",
+            search: "/api/search",
+            uploads: "/api/uploads",
+            categories: "/api/categories",
+            products: "/api/products",
+            booking: "/api/booking",
+            users: "/api/users",
+        };
 
 Router File
 -----------
 
-    routes() {
-    this.app.use(this.paths.auth, require("../routes/auth"));
-    this.app.use(this.paths.search, require("../routes/search"));
-    this.app.use(this.paths.uploads, require("../routes/uploads"));
-    this.app.use(this.paths.categories, require("../routes/categories"));
-    this.app.use(this.paths.products, require("../routes/products"));
-    this.app.use(this.paths.booking, require("../routes/booking"));
-    this.app.use(this.paths.users, require("../routes/users"));
-    }
+        routes() {
+            this.app.use(this.paths.auth, require("../routes/auth"));
+            this.app.use(this.paths.search, require("../routes/search"));
+            this.app.use(this.paths.uploads, require("../routes/uploads"));
+            this.app.use(this.paths.categories, require("../routes/categories"));
+            this.app.use(this.paths.products, require("../routes/products"));
+            this.app.use(this.paths.booking, require("../routes/booking"));
+            this.app.use(this.paths.users, require("../routes/users"));
+        }
 
 Release Notes
 -------------
