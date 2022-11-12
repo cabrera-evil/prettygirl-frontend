@@ -32,7 +32,6 @@ router.post(
     "/",
     [
         validateJWT,
-        check("id").custom(categoryExistByID),
         check("name", "Name is obligatory").not().isEmpty(),
         check("picture", "Picture is obligatory").not().isEmpty(),
         validateFields,

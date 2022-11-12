@@ -23,11 +23,6 @@ const validateJWT = async (req = request, res = response, next) => {
         .json({ msg: "Invalid token - User not fount" });
     }
 
-    // check if uid has status true
-    if (!user.status) {
-      res.status(401).json({ msg: "Invalid token - Inactive user" });
-    }
-
     req.user = user;
     next();
   } catch (error) {

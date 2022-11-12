@@ -27,8 +27,25 @@ const getCategory = async (req, res) => {
 };
 
 const categoryPost = async (req, res) => {
-    const {_id, name, picture} = req.body;
-    const category = new Category({_id, name, picture});
+    const name = req.body.name.toUpperCase();
+
+    // Check if category exists
+    const categoryDB = await Category.findOne({ name });
+
+    if (categoryDB) {
+        return res.status(400).json({
+            msg: `Category: ${categoryDB.name}, already exists`,
+        });
+    }
+
+    // Generate data to save
+    const data = {
+        _id: req.body._id,
+        name,
+        picture: req.body.picture,
+    };
+
+    const category = new Category(data);
 
     // Saving in db
     await category.save();
@@ -41,8 +58,9 @@ const categoryPut = async (req, res) => {
     const { id } = req.params;
     const { _id, name, picture, ...data } = req.body;
 
+    data._id = req.body._id;
     data.name = data.name.toUpperCase();
-    data.user = req.user._id;
+    data.picture = req.body.picture;
 
     const category = await Category.findByIdAndUpdate(id, data, {
         new: true,
