@@ -31,8 +31,12 @@ router.post(
     "/",
     [
         validateJWT,
-        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(bookingExistByID),
+        check("user", "Invalid Mongo ID").isMongoId(),
+        check("address", "Address is required").not().isEmpty(),
+        check("delivery", "Delivery is required").not().isEmpty(),
+        check("date", "Date is required").not().isEmpty(),
+        check("estimatedDelivery", "Estimated Delivery is required").not().isEmpty(),
         validateFields,
     ],
     bookingPost
@@ -43,7 +47,6 @@ router.put(
     "/:id",
     [
         validateJWT,
-        check("name", "Name is obligatory").not().isEmpty(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],

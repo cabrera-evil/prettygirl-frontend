@@ -35,9 +35,16 @@ router.post(
     "/",
     [
         validateJWT,
-        check("name", "Name is obligatory").not().isEmpty(),
+        check("name", "Name is required").not().isEmpty(),
         check("category", "Invalid Mongo ID").isMongoId(),
         check("category").custom(categoryExistByID),
+        check("size", "Size is required").not().isEmpty(),
+        check("color", "Color is required").not().isEmpty(),
+        check("gender", "Gender is required").not().isEmpty(),
+        check("available", "Available is required").not().isEmpty(),
+        check("amount", "Amount is required").not().isEmpty(),
+        check("price", "Price is required").not().isEmpty(),
+        check("picture", "Picture is required").not().isEmpty(),
         validateFields,
     ],
     productPost
