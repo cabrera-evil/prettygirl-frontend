@@ -1,65 +1,101 @@
-const express = require("express");
-const userSchema = require("../models/products");
+const { response } = require("express");
+const { body } = require("express-validator");
+const { Product } = require("../models");
 
-const router = express.Router();
+// Get products - paginate - total - populate
+const getProducts = async (req, res = response) => {
+    const { limit = 5, skip = 0 } = req.query;
+    const query = { status: true };
 
-//Create user
-router.post("/product", (req, res) => {
-    const user = userSchema(req.body);
-    user.save()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const [total, products] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+            .populate("user", "name")
+            .populate("category", "name")
+            .limit(Number(limit))
+            .skip(Number(skip)),
+    ]);
 
-//Get users
-router.get("/product", (req, res) => {
-    userSchema.find()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    res.json({
+        total,
+        products,
+    });
+};
 
-//Get user by id
-router.get("/product/:id", (req, res) => {
+// Get product - populate {}
+const getProduct = async (req, res = response) => {
     const { id } = req.params;
-    userSchema.findById(id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    const product = await Product.findById(id)
+        .populate("user", "name")
+        .populate("category", "name");
 
-//Update user
-router.patch("/product/:id", (req, res) => {
-    const id = req.params.id;
-    const { name, age, email } = req.body;
-    userSchema.updateOne({ _id: id }, { $set: { name, age, email } })
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+    res.json(product);
+};
 
-//Delete user
-router.delete("/product/:id", (req, res) => {
-    userSchema.findByIdAndDelete(req.params.id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            res.json({ message: err });
-        });
-});
+const createProduct = async (req, res = response) => {
+    const { status, user, ...info } = req.body;
 
-module.exports = router;
+    // Revisar si existe la categoria
+    const productDB = await Product.findOne({ name: info.name });
+
+    if (productDB) {
+        return res.status(400).json({
+            msg: `La el producto ${productDB.name}, ya existe`,
+        });
+    }
+
+    // Generate data to save
+    const data = {
+        ...info,
+        name: info.name.toUpperCase(),
+        user: req.user._id,
+    };
+
+    const product = new Product(data);
+
+    // Saving in db
+    await product.save();
+
+    res.status(201).json(product);
+};
+
+// Update category
+const updateProduct = async (req, res = response) => {
+    const { id } = req.params;
+    const { status, user, ...data } = req.body;
+
+    if (data.name) {
+        data.name = data.name.toUpperCase();
+    }
+
+    data.user = req.user._id;
+
+    const product = await Product.findByIdAndUpdate(id, data, {
+        new: true,
+    });
+
+    res.json(product);
+};
+
+//  Delete category - status:false
+const deleteProduct = async (req, res = response) => {
+    const { id } = req.params;
+
+    const productDeleted = await Product.findByIdAndUpdate(
+        id,
+        { status: false },
+        {
+            new: true,
+        }
+    );
+
+    res.json(productDeleted);
+};
+
+module.exports = {
+    getProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+};
