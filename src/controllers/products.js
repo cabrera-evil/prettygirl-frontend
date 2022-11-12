@@ -1,6 +1,6 @@
 const { response } = require("express");
 const { body } = require("express-validator");
-const { Product } = require("../models");
+const Product = require("../models/product");
 
 // Get products - paginate - total - populate
 const getProducts = async (req, res = response) => {
@@ -9,11 +9,7 @@ const getProducts = async (req, res = response) => {
 
     const [total, products] = await Promise.all([
         Product.countDocuments(query),
-        Product.find(query)
-            .populate("user", "name")
-            .populate("category", "name")
-            .limit(Number(limit))
-            .skip(Number(skip)),
+        Product.find(query).limit(Number(limit)).skip(Number(skip)),
     ]);
 
     res.json({
@@ -32,31 +28,16 @@ const getProduct = async (req, res = response) => {
     res.json(product);
 };
 
-const createProduct = async (req, res = response) => {
-    const { status, user, ...info } = req.body;
-
-    // Revisar si existe la categoria
-    const productDB = await Product.findOne({ name: info.name });
-
-    if (productDB) {
-        return res.status(400).json({
-            msg: `La el producto ${productDB.name}, ya existe`,
-        });
-    }
-
-    // Generate data to save
-    const data = {
-        ...info,
-        name: info.name.toUpperCase(),
-        user: req.user._id,
-    };
-
-    const product = new Product(data);
+const createProduct = async (req, res) => {
+    const { name, category, size, color, gender, available, amount, price, picture } = req.body;
+    const product = new Product({name, category, size, color, gender, available, amount, price, picture});
 
     // Saving in db
     await product.save();
 
-    res.status(201).json(product);
+    res.json({
+        product,
+    });
 };
 
 // Update category
