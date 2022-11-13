@@ -16,10 +16,8 @@ const {
 
 const router = Router();
 
-// Obtener todas las categorias - publico
 router.get("/", productsGet);
 
-// Obtener una categoria por id - publico
 router.get(
     "/:id",
     [
@@ -30,7 +28,6 @@ router.get(
     getProduct
 );
 
-// Crear producto - privado - cualquier persona con un token valido
 router.post(
     "/",
     [
@@ -49,7 +46,6 @@ router.post(
     productPost
 );
 
-// Actualizar producto - privado - cualquier persona con un token valido
 router.put(
     "/:id",
     [
@@ -61,7 +57,6 @@ router.put(
     productPut
 );
 
-// Eliminar categoria - admin
 router.delete(
     "/:id",
     [

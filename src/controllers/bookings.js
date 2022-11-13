@@ -21,9 +21,7 @@ const bookingPost = async (req, res) => {
     const data = {...req.body};
     const booking = new Booking(data);
 
-    // Save in db
     await booking.save();
-
     res.json({
         booking,
     });
@@ -34,7 +32,6 @@ const bookingPut = async (req, res) => {
     const newBooking = {...req.body};
 
     const updatedBooking = await Booking.findByIdAndUpdate(id, newBooking , {new: true});
-
     res.json(updatedBooking);
 };
 
@@ -42,7 +39,6 @@ const bookingDelete = async (req, res) => {
     const { id } = req.params;
 
     const BookingDB = await Booking.findByIdAndDelete(id);
-
     res.json({
         BookingDB,
     });

@@ -24,8 +24,6 @@ const productsGet = async (req, res = response) => {
 const getProduct = async (req, res = response) => {
     const { id } = req.params;
     const product = await Product.findById(id)
-        .populate("user", "name")
-        .populate("category", "name");
 
     res.json(product);
 };

@@ -2,7 +2,6 @@ const {uploadFile} = require("../helpers/upload-file");
 const {deleteFile} = require("../helpers/delete-file");
 const Category = require("../models/category");
 
-// Get categories - paginate - total - populate
 const categoriesGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
@@ -20,7 +19,6 @@ const categoriesGet = async (req, res) => {
     });
 };
 
-// Get category - populate {}
 const getCategory = async (req, res) => {
     const { id } = req.params;
     const category = await Category.findById(id);
@@ -31,7 +29,6 @@ const getCategory = async (req, res) => {
 const categoryPost = async (req, res) => {
     const id = req.body._id.toUpperCase();
 
-    // Check if category exists
     const categoryDB = await Category.findById(id);
     if (categoryDB) {
         return res.status(400).json({
@@ -63,7 +60,6 @@ const categoryPost = async (req, res) => {
     }
 };
 
-// Update category
 const categoryPut = async (req, res) => {
     const { id } = req.params;
     const newCategory = {...req.body};
@@ -86,7 +82,6 @@ const categoryPut = async (req, res) => {
     res.json(updatedCategory);
 };
 
-//  Delete category
 const categoryDelete = async (req, res) => {
     const { id } = req.params;
     const categoryDB = await Category.findByIdAndDelete(id);

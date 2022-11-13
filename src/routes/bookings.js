@@ -12,10 +12,8 @@ const { bookingExistByID, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
-// Obtener todas las categorias - publico
 router.get("/", bookingGet);
 
-// Obtener una categoria por id - publico
 router.get(
     "/:id",
     [
@@ -26,7 +24,6 @@ router.get(
     bookingGet
 );
 
-// Crear categoria - privado - cualquier persona con un token valido
 router.post(
     "/",
     [
@@ -42,7 +39,6 @@ router.post(
     bookingPost
 );
 
-// Actualizar categoria - privado - cualquier persona con un token valido
 router.put(
     "/:id",
     [
@@ -53,7 +49,6 @@ router.put(
     bookingPut
 );
 
-// Eliminar categoria - admin
 router.delete(
     "/:id",
     [
