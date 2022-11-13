@@ -57,7 +57,6 @@ const categoryPost = async (req, res) => {
         }
 
         await category.save();
-
         res.json({
             category,
         });
