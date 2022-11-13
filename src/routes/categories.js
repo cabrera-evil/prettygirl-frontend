@@ -20,7 +20,7 @@ router.get("/", categoriesGet);
 router.get(
     "/:id",
     [
-        check("id", "Invalid Mongo ID").isMongoId(),
+        check("id", "Invalid Mongo ID"),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
@@ -57,7 +57,6 @@ router.delete(
     [
         validateJWT,
         isAdminRole,
-        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
