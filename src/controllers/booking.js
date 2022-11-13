@@ -31,11 +31,11 @@ const bookingPost = async (req, res) => {
 
 const bookingPut = async (req, res) => {
     const { id } = req.params;
-    const { user, address, delivery, date, estimatedDelivery, ...info } = req.body;
+    const newBooking = {...req.body};
 
-    const BookingDB = await Booking.findByIdAndUpdate(id, info);
+    const updatedBooking = await Booking.findByIdAndUpdate(id, newBooking , {new: true});
 
-    res.json(BookingDB);
+    res.json(updatedBooking);
 };
 
 const bookingDelete = async (req, res = response) => {

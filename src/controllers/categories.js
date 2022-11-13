@@ -56,17 +56,11 @@ const categoryPost = async (req, res) => {
 // Update category
 const categoryPut = async (req, res) => {
     const { id } = req.params;
-    const { _id, name, picture, ...data } = req.body;
+    const newCategory = {...req.body};
 
-    data._id = req.body._id;
-    data.name = data.name.toUpperCase();
-    data.picture = req.body.picture;
+    const updatedCategory = await Category.findByIdAndUpdate(id, newCategory , {new: true});
 
-    const category = await Category.findByIdAndUpdate(id, data, {
-        new: true,
-    });
-
-    res.json(category);
+    res.json(updatedCategory);
 };
 
 //  Delete category - status:false

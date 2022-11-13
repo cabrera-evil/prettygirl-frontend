@@ -55,8 +55,8 @@ router.put(
     "/:id",
     [
         validateJWT,
-        check("category", "Invalid Mongo ID").isMongoId(),
-        check("id").custom(productExistByID),
+        check("id", "Invalid Mongo ID").isMongoId(),
+        // check("id").custom(productExistByID),
         validateFields,
     ],
     productPut

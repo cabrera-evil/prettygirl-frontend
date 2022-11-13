@@ -43,19 +43,11 @@ const productPost = async (req, res) => {
 // Update category
 const productPut = async (req, res = response) => {
     const { id } = req.params;
-    const { name, category, size, color, gender, available, amount, price, picture, ...data } = req.body;
+    const newProduct = {...req.body};
 
-    if (data.name) {
-        data.name = data.name.toUpperCase();
-    }
+    const updatedProduct = await Product.findByIdAndUpdate(id, newProduct , {new: true});
 
-    data.user = req.user._id;
-
-    const product = await Product.findByIdAndUpdate(id, data, {
-        new: true,
-    });
-
-    res.json(product);
+    res.json(updatedProduct);
 };
 
 //  Delete category - status:false
