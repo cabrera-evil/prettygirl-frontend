@@ -21,36 +21,31 @@ const categoriesGet = async (req, res) => {
 // Get category - populate {}
 const getCategory = async (req, res) => {
     const { id } = req.params;
-    const category = await Category.findById(id).populate("user", "name");
+    const category = await Category.findById(id);
 
     res.json(category);
 };
 
 const categoryPost = async (req, res) => {
-    const name = req.body.name.toUpperCase();
+    const id = req.body._id.toUpperCase();
 
     // Check if category exists
-    const categoryDB = await Category.findOne({ name });
-
+    const categoryDB = await Category.findById(id);
     if (categoryDB) {
         return res.status(400).json({
             msg: `Category: ${categoryDB.name}, already exists`,
         });
     }
+    else{
+        const data = {...req.body};
+        const category = new Category(data);
 
-    // Generate data to save
-    const data = {
-        _id: req.body._id,
-        name,
-        picture: req.body.picture,
-    };
+        await category.save();
 
-    const category = new Category(data);
-
-    // Saving in db
-    await category.save();
-
-    res.status(201).json(category);
+        res.json({
+            category,
+        });
+    }
 };
 
 // Update category
@@ -66,7 +61,6 @@ const categoryPut = async (req, res) => {
 //  Delete category - status:false
 const categoryDelete = async (req, res) => {
     const { id } = req.params;
-
     const categoryDB = await Category.findByIdAndDelete(id);
 
     res.json(categoryDB);

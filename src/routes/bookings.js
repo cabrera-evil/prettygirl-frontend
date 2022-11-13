@@ -8,7 +8,7 @@ const {
     bookingPut,
     bookingDelete,
 } = require("../controllers/bookings");
-const { bookingExistByID } = require("../helpers/db-validators");
+const { bookingExistByID, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
@@ -32,6 +32,7 @@ router.post(
     [
         validateJWT,
         check("user", "User is required").not().isEmpty(),
+        check("user").custom(userExistByID),
         check("address", "Address is required").not().isEmpty(),
         check("delivery", "Delivery is required").not().isEmpty(),
         check("date", "Date is required").not().isEmpty(),

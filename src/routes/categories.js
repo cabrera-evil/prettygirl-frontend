@@ -32,8 +32,9 @@ router.post(
     "/",
     [
         validateJWT,
-        check("name", "Name is obligatory").not().isEmpty(),
-        check("picture", "Picture is obligatory").not().isEmpty(),
+        check("id", "ID is required").not().isEmpty(),
+        check("name", "Name is required").not().isEmpty(),
+        check("picture", "Picture is required").not().isEmpty(),
         validateFields,
     ],
     categoryPost
@@ -44,7 +45,8 @@ router.put(
     "/:id",
     [
         validateJWT,
-        check("name", "Name is obligatory").not().isEmpty(),
+        check("id", "ID is required").not().isEmpty(),
+        check("name", "Name is required").not().isEmpty(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
