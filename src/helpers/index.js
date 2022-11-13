@@ -1,11 +1,10 @@
-const validateFields = require("../middlewares/validate-fields");
-const validateJWT = require("../middlewares/validate-jwt");
-const validateFileToUpload = require("../middlewares/validate-file");
-const validateRoles = require("../middlewares/validate-roles");
+const dbValidators = require("./db-validators");
+const generateJWT = require("./generate-jwt");
+const uploadFile = require("./upload-file");
 
 module.exports = {
-    ...validateFields,
-    ...validateJWT,
-    ...validateRoles,
-    ...validateFileToUpload,
+    // se expanden los contenidos
+    ...dbValidators,
+    ...generateJWT,
+    ...uploadFile,
 };

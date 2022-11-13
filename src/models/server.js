@@ -3,6 +3,7 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
 const { connect } = require("../config/database");
+const { config }= require("../config/cloudinary");
 
 class Server {
   constructor() {
@@ -52,6 +53,7 @@ class Server {
 
   async connectToDatabase() {
     await connect();
+    await config();
   }
 
   routes() {

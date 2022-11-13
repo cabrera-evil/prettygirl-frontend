@@ -44,7 +44,6 @@ router.post(
         check("available", "Available is required").not().isEmpty(),
         check("amount", "Amount is required").not().isEmpty(),
         check("price", "Price is required").not().isEmpty(),
-        check("picture", "Picture is required").not().isEmpty(),
         validateFields,
     ],
     productPost
