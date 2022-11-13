@@ -1,25 +1,25 @@
-const { response, request } = require("express");
-
 const Booking = require("../models/booking");
 
-const bookingGet = async (req = request, res = response) => {
+const bookingGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
-    const [total, Booking] = await Promise.all([
+    const [total, booking] = await Promise.all([
         Booking.countDocuments(query),
-        Booking.find(query).limit(Number(limit)).skip(Number(skip)),
+        Booking.find(query)
+            .limit(Number(limit))
+            .skip(Number(skip)),
     ]);
 
     res.json({
         total,
-        bookings,
+        booking,
     });
 };
 
 const bookingPost = async (req, res) => {
-    const {user, address, delivery, date, estimatedDelivery} = req.body;
-    const booking = new Booking({user, address, delivery, date, estimatedDelivery});
+    const data = {...req.body};
+    const booking = new Booking(data);
 
     // Save in db
     await booking.save();
@@ -38,7 +38,7 @@ const bookingPut = async (req, res) => {
     res.json(updatedBooking);
 };
 
-const bookingDelete = async (req, res = response) => {
+const bookingDelete = async (req, res) => {
     const { id } = req.params;
 
     const BookingDB = await Booking.findByIdAndDelete(id);

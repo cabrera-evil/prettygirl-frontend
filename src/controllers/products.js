@@ -29,10 +29,10 @@ const getProduct = async (req, res = response) => {
 };
 
 const productPost = async (req, res) => {
-    const { name, category, size, color, gender, available, amount, price, picture } = req.body;
-    const product = new Product({name, category, size, color, gender, available, amount, price, picture});
+    const data = {...req.body};
+    const product = new Product(data);
 
-    // Saving in db
+    // Save in db
     await product.save();
 
     res.json({
