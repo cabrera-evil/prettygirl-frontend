@@ -5,7 +5,7 @@ const User = require("../models/user");
 const { generateJWT } = require("../helpers/generate-jwt");
 
 const login = async (req, res = response) => {
-    const { email, password } = req.body;
+    const { password } = req.body;
 
     try {
         // check if email exist
@@ -27,8 +27,10 @@ const login = async (req, res = response) => {
         // generate token
         const token = await generateJWT(user.id);
 
+        const {email, name, role} = user;
+        
         res.json({
-            user,
+            user: {email, name, role},
             token,
         });
     } catch (error) {
