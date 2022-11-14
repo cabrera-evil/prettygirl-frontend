@@ -13,14 +13,14 @@ const bookingSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
-    date: {
-        type: Date,
-        required: true
-    },
     estimatedDelivery: {
         type: Date,
         required: true
     }
-});
+},
+    {
+        timestamps: true,
+    }
+);
 
 module.exports = mongoose.model('Booking', bookingSchema);

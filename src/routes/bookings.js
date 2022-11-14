@@ -32,7 +32,6 @@ router.post(
         check("user").custom(userExistByID),
         check("address", "Address is required").not().isEmpty(),
         check("delivery", "Delivery is required").not().isEmpty(),
-        check("date", "Date is required").not().isEmpty(),
         check("estimatedDelivery", "Estimated Delivery is required").not().isEmpty(),
         validateFields,
     ],
@@ -44,6 +43,11 @@ router.put(
     [
         validateJWT,
         check("id").custom(bookingExistByID),
+        check("user", "User is required").not().isEmpty(),
+        check("user").custom(userExistByID),
+        check("address", "Address is required").not().isEmpty(),
+        check("delivery", "Delivery is required").not().isEmpty(),
+        check("estimatedDelivery", "Estimated Delivery is required").not().isEmpty(),
         validateFields,
     ],
     bookingPut

@@ -41,8 +41,8 @@ router.put(
     [
         validateJWT,
         check("_id", "ID is required").not().isEmpty(),
-        check("name", "Name is required").not().isEmpty(),
         check("id").custom(categoryExistByID),
+        check("name", "Name is required").not().isEmpty(),
         validateFields,
     ],
     categoryPut
