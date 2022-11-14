@@ -49,7 +49,7 @@ const categoryPost = async (req, res) => {
         else{
             category.picture = {
                 public_id: "none",
-                secure_url: "../assets/no-image.png"
+                secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
             }
         }
 
@@ -74,7 +74,7 @@ const categoryPut = async (req, res) => {
     else{
         newCategory.picture = {
             public_id: "none",
-            secure_url: "../assets/no-image.png"
+            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
         }
     }
 

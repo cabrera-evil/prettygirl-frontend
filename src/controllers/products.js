@@ -42,7 +42,7 @@ const productPost = async (req, res) => {
     else{
         product.picture = {
             public_id: "none",
-            secure_url: "../assets/no-image.png"
+            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
         }
     }
 
@@ -68,7 +68,7 @@ const productPut = async (req, res = response) => {
     else{
         product.picture = {
             public_id: "none",
-            secure_url: "../assets/no-image.png"
+            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
         }
     }
 
