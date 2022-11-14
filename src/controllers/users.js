@@ -9,7 +9,7 @@ const usersGet = async (req = request, res = response) => {
 
     const [total, users] = await Promise.all([
         User.countDocuments(query),
-        User.find(query).limit(Number(limit)).skip(Number(skip)),
+        User.find(query).select("name email role").limit(Number(limit)).skip(Number(skip)),
     ]);
 
     res.json({
