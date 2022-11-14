@@ -4,14 +4,29 @@ const {deleteFile} = require("../helpers/delete-file");
 const { body } = require("express-validator");
 const Product = require("../models/product");
 
-// Get products - paginate - total - populate
-const productsGet = async (req, res = response) => {
+// Get products - paginate - feed - populate
+const feedProductsGet = async (req, res = response) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
     const [total, products] = await Promise.all([
         Product.countDocuments(query),
         Product.find(query).limit(Number(limit)).skip(Number(skip)),
+    ]);
+
+    res.json({
+        total,
+        products,
+    });
+};
+
+// Get products - paginate - total - populate
+const productsGet = async (req, res = response) => {
+    const query = { status: true };
+
+    const [total, products] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
     ]);
 
     res.json({
@@ -86,6 +101,7 @@ const productDelete = async (req, res = response) => {
 };
 
 module.exports = {
+    feedProductsGet,
     productsGet,
     getProduct,
     productPost,
