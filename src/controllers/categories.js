@@ -3,14 +3,11 @@ const {deleteFile} = require("../helpers/delete-file");
 const Category = require("../models/category");
 
 const categoriesGet = async (req, res) => {
-    const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
 
     const [total, categories] = await Promise.all([
         Category.countDocuments(query),
         Category.find(query)
-            .limit(Number(limit))
-            .skip(Number(skip)),
     ]);
 
     res.json({
