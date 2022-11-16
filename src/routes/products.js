@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
 const {
+    feedProductsGet,
     productsGet,
     getProduct,
     productPost,
@@ -16,6 +17,7 @@ const {
 
 const router = Router();
 
+router.get("/feed", feedProductsGet);
 router.get("/", productsGet);
 
 router.get(
