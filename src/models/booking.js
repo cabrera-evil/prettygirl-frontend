@@ -21,7 +21,7 @@ const bookingSchema = mongoose.Schema({
     },
     delivery: {
         type: Boolean,
-        required: true
+        default: false
     },
     estimatedDelivery: {
         type: Date,
