@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = mongoose.Schema({
+    description:{
+        products:{
+            type: Array,
+            required: true
+        },
+        total:{
+            type: Number,
+            default: 0
+        }
+    },
     user: {
         type: String,
         required: true
