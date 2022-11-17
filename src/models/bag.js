@@ -1,25 +1,19 @@
 const mongoose = require('mongoose');
 
 const bagSchema = mongoose.Schema({
-    user:{
+    client_id:{
         type: String,
         require:true
     },
     products:{
-        type:Array,
-        detail:{
-            type:Object,
-            require:true,
-            product_id:{
-                type:String,
-                require:true
-            },
-            amount:{
-                type:Number,
-                require:true
-            },
+        product_id:{
+            type:String,
+            require:true
         },
-        require:true
+        amount:{
+            type:Number,
+            default:1
+        },
     }
 });
 

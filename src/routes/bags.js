@@ -31,13 +31,12 @@ router.post(
     [
         validateJWT,
         isAdminRole,
-        check("user", "User is required").not().isEmpty(),
-        check("user").custom(userExistByID),
-        check("products", "Products is required").not().isEmpty(),
-        check("products.detail", "Detail is required").not().isEmpty(),
-        check("products.detail.product_id", "Product ID is required").not().isEmpty(),
-        check("products.detail.product_id").custom(productExistByID),
-        check("products.detail.amount", "Amount is required").not().isEmpty(),
+        check("client_id", "Client ID is required").not().isEmpty(),
+        check("client_id", "Invalid Mongo ID").isMongoId(),
+        check("client_id").custom(userExistByID),
+        check("products.product_id", "Product ID is required").not().isEmpty(),
+        check("products.product_id").custom(productExistByID),
+        check("products.amount", "Amount must be a number").isNumeric(),
         validateFields,
     ],
     bagPost
@@ -48,13 +47,6 @@ router.put(
     [
         validateJWT,
         isAdminRole,
-        check("user", "User is required").not().isEmpty(),
-        check("user").custom(userExistByID),
-        check("products", "Products is required").not().isEmpty(),
-        check("products.detail", "Detail is required").not().isEmpty(),
-        check("products.detail.product_id", "Product ID is required").not().isEmpty(),
-        check("products.detail.product_id").custom(productExistByID),
-        check("products.detail.amount", "Amount is required").not().isEmpty(),
         validateFields,
     ],
     bagPut
