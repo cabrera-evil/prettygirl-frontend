@@ -4,7 +4,6 @@ const {deleteFile} = require("../helpers/delete-file");
 const { body } = require("express-validator");
 const Product = require("../models/product");
 
-// Get products - paginate - feed - populate
 const feedProductsGet = async (req, res = response) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
@@ -20,7 +19,6 @@ const feedProductsGet = async (req, res = response) => {
     });
 };
 
-// Get products - paginate - total - populate
 const productsGet = async (req, res = response) => {
     const query = { status: true };
 
@@ -35,7 +33,6 @@ const productsGet = async (req, res = response) => {
     });
 };
 
-// Get product - populate {}
 const getProduct = async (req, res = response) => {
     const { id } = req.params;
     const product = await Product.findById(id)
@@ -61,14 +58,12 @@ const productPost = async (req, res) => {
         }
     }
 
-    // Save in db
     await product.save();
     res.json({
         product,
     });
 };
 
-// Update category
 const productPut = async (req, res = response) => {
     const { id } = req.params;
     const newProduct = {...req.body};
@@ -91,7 +86,6 @@ const productPut = async (req, res = response) => {
     res.json(updatedProduct);
 };
 
-//  Delete category - status:false
 const productDelete = async (req, res = response) => {
     const { id } = req.params;
     const productDB = await Product.findByIdAndDelete(id);

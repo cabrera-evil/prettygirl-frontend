@@ -34,6 +34,7 @@ router.post(
     "/",
     [
         validateJWT,
+        isAdminRole,
         check("name", "Name is required").not().isEmpty(),
         check("category", "Category is required").not().isEmpty(),
         check("category").custom(categoryExistByID),
@@ -52,6 +53,7 @@ router.put(
     "/:id",
     [
         validateJWT,
+        isAdminRole,
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(productExistByID),
         check("name", "Name is required").not().isEmpty(),

@@ -4,6 +4,7 @@ const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
 const {
     bookingGet,
+    getBooking,
     bookingPost,
     bookingPut,
     bookingDelete,
@@ -12,16 +13,17 @@ const { bookingExistByID, productExistByID, userExistByID } = require("../helper
 
 const router = Router();
 
-router.get("/", bookingGet);
+router.get("/", validateJWT, bookingGet);
 
 router.get(
     "/:id",
     [
+        validateJWT,
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(bookingExistByID),
         validateFields,
     ],
-    bookingGet
+    getBooking
 );
 
 router.post(
@@ -43,6 +45,7 @@ router.put(
     "/:id",
     [
         validateJWT,
+        isAdminRole,
         check("description.products", "products are required").not().isEmpty(),
         check("description.products").isArray().custom(productExistByID),
         check("id").custom(bookingExistByID),

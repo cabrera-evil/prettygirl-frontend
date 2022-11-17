@@ -11,6 +11,7 @@ const {
 
 const {
     usersGet,
+    getUser,
     usersPost,
     usersPut,
     usersPatch,
@@ -20,6 +21,16 @@ const {
 const router = Router();
 
 router.get("/", usersGet);
+
+router.get(
+    "/:id",
+    [
+        check("id", "Invalid Mongo ID").isMongoId(),
+        check("id").custom(userExistByID),
+        validateFields,
+    ],
+    getUser
+);
 
 router.post(
     "/",
@@ -43,6 +54,7 @@ router.post(
 router.put(
     "/:id",
     [
+        validateJWT,
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(userExistByID),
         check("name", "Name is required").not().isEmpty(),

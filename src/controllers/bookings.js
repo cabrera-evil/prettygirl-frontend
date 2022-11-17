@@ -17,6 +17,13 @@ const bookingGet = async (req, res) => {
     });
 };
 
+const getBooking = async (req, res = response) => {
+    const { id } = req.params;
+    const booking = await Booking.findById(id)
+
+    res.json(booking);
+};
+
 const bookingPost = async (req, res) => {
     const data = {...req.body};
     const booking = new Booking(data);
@@ -46,6 +53,7 @@ const bookingDelete = async (req, res) => {
 
 module.exports = {
     bookingGet,
+    getBooking,
     bookingPost,
     bookingPut,
     bookingDelete,
