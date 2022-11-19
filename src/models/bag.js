@@ -6,6 +6,7 @@ const bagSchema = mongoose.Schema({
         require:true
     },
     products:{
+        type: Array,
         product_id:{
             type:String,
             require:true
