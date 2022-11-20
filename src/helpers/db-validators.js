@@ -55,7 +55,6 @@ const bagExistByID = async (id = "") => {
   }
 };
 
-// Validate collections
 const allowedCollections = (collection = "", collections = []) => {
   const included = collections.includes(collection);
   if (!included) {

@@ -1,4 +1,5 @@
 const Bag = require("../models/bag");
+const Product = require("../models/product");
 
 const bagGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
@@ -25,21 +26,34 @@ const getBag = async (req, res = response) => {
 };
 
 const bagPost = async (req, res) => {
-    const data = {...req.body};
-    const bag = new Bag(data);
+    const bag = new Bag(req.body);
 
-    await bag.save();
-    res.json({
-        bag,
-    });
+    if(await verifyProducts(bag.products)){
+        await bag.save();
+        res.json({
+            bag,
+        });
+    }
+    else{
+        return res.status(400).json({
+            msg: "Please fill the products array correctly"
+        });
+    }
 };
 
 const bagPut = async (req, res) => {
     const { id } = req.params;
     const newBag = {...req.body};
 
-    const updatedBag = await Bag.findByIdAndUpdate(id, newBag , {new: true});
-    res.json(updatedBag);
+    if(await verifyProducts(newBag.products)){
+        const updatedBag = await Bag.findByIdAndUpdate(id, newBag , {new: true});
+        res.json(updatedBag);
+    }
+    else{
+        return res.status(400).json({
+            msg: "Please fill the products array correctly"
+        });
+    }
 };
 
 const bagDelete = async (req, res) => {
@@ -50,6 +64,21 @@ const bagDelete = async (req, res) => {
         BagDB,
     });
 };
+
+// Helper functions
+const verifyProducts = async (products) =>{
+    for (let i = 0; i < products.length; i++) {
+        try{
+            const findProduct = await Product.findById(products[i]._id);
+            if(!findProduct){
+                return false;
+            }
+        }catch{
+            return false;
+        }
+    }
+    return true;
+}
 
 module.exports = {
     bagGet,
