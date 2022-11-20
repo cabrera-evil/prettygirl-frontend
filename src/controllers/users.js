@@ -26,17 +26,23 @@ const getUser = async (req, res = response) => {
 };
 
 const usersPost = async (req, res) => {
-    const data = {...req.body};
-    const user = new User(data);
+    const user = new User(req.body);
 
     // Encrypt password
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(user.password, salt);
 
-    await user.save();
-    res.json({
-        user,
-    });
+    if(validateRole(user.role)){
+        await user.save();
+        res.json({
+            user,
+        });
+    }
+    else{
+        return res.status(400).json({
+            msg: "Invalid role"
+        });
+    }
 };
 
 const usersPut = async (req, res) => {
@@ -47,8 +53,15 @@ const usersPut = async (req, res) => {
     const salt = bcrypt.genSaltSync();
     newUser.password = bcrypt.hashSync(newUser.password, salt);
 
-    const updatedUser = await User.findByIdAndUpdate(id, newUser , {new: true});
-    res.json(updatedUser);
+    if(validateRole(newUser.role)){
+        const updatedUser = await User.findByIdAndUpdate(id, newUser , {new: true});
+        res.json(updatedUser);
+    }
+    else{
+        return res.status(400).json({
+            msg: "Invalid role"
+        });
+    }
 };
 
 const usersPatch = (req, res = response) => {
@@ -65,6 +78,15 @@ const usersDelete = async (req, res = response) => {
         userDB,
     });
 };
+
+//Helper functions
+const validateRole = (role) =>{
+    if(role == "ADMIN_ROLE" || role == "CLIENT_ROLE"){
+        return true;
+    }
+    return false;
+}
+
 
 module.exports = {
     usersGet,

@@ -13,10 +13,10 @@ Bag
         products:{
                 type: Array,
                 _id:{
-                type:String,
+                        type:String,
                 },
                 amount:{
-                type:Number,
+                        type:Number,
         }
 
 Booking
@@ -24,10 +24,10 @@ Booking
 
         description:{
                 products:{
-                type: Array,
+                        type: Array,
                 },
                 total:{
-                type: Number,
+                        type: Number,
                 }
         },
         user: {
