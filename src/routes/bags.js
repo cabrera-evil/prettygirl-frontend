@@ -9,7 +9,7 @@ const {
     bagPut,
     bagDelete,
 } = require("../controllers/bags");
-const { bagExistByID, productExistByID, userExistByID } = require("../helpers/db-validators");
+const { bagExistByID, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 

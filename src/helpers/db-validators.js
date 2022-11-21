@@ -49,9 +49,9 @@ const bookingExistByID = async (id = "") => {
 };
 
 const bagExistByID = async (id = "") => {
-  const bagExist = await Bag.findById(id);
+  const bagExist = await Bag.find({user: id,});
   if (!bagExist) {
-    throw new Error(`Bag ID:${id} does not exist`);
+    throw new Error(`Bag User ID:${id} does not exist`);
   }
 };
 
