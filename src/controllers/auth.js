@@ -1,6 +1,6 @@
+const { jwtDecode, jwtVerify } = require('jwt-js-decode');
 const { response } = require("express");
 const bcrypt = require("bcryptjs");
-
 const User = require("../models/user");
 const { generateJWT } = require("../helpers/generate-jwt");
 
@@ -26,7 +26,6 @@ const login = async (req, res = response) => {
 
         // generate token
         const token = await generateJWT(user.id);
-
         const {name, role} = user;
 
         res.json({
@@ -41,9 +40,21 @@ const login = async (req, res = response) => {
     }
 };
 
+const validateToken = async (req, res = response) => {
+    const {token} = req.params;
+    let valid = await jwtVerify(token, process.env.PRIVATEKEY);
+    let exp = (jwtDecode(token).payload).exp;
+    let uid = (jwtDecode(token).payload).uid;
+    
+    res.json({
+        uid,
+        exp,
+        valid
+    });
+}
+
 const renewToken = async (req, res = response) => {
     const { user } = req;
-
     const token = await generateJWT(user.id);
 
     res.json({
@@ -54,5 +65,6 @@ const renewToken = async (req, res = response) => {
 
 module.exports = {
     login,
+    validateToken,
     renewToken,
 };
