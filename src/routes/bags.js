@@ -4,12 +4,13 @@ const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
 const {
     bagGet,
+    bagProductsGet,
     getBag,
     bagPost,
     bagPut,
     bagDelete,
 } = require("../controllers/bags");
-const { bagExistByID, userExistByID } = require("../helpers/db-validators");
+const { bagExistByID, bagExistByUser, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
@@ -20,11 +21,22 @@ router.get(
     [
         validateJWT,
         check("id", "Invalid Mongo ID").isMongoId(),
-        check("id").custom(bagExistByID),
+        check("id").custom(bagExistByUser),
         validateFields,
     ],
     getBag
 );
+
+router.get(
+    "/products/:id",
+    [
+        validateJWT,
+        check("id", "Invalid Mongo ID").isMongoId(),
+        check("id").custom(bagExistByID),
+        validateFields
+    ],
+    bagProductsGet
+)
 
 router.post(
     "/",

@@ -18,6 +18,19 @@ const bagGet = async (req, res) => {
     });
 };
 
+const bagProductsGet = async (req, res) => {
+    const { id } = req.params;
+    const bag = await Bag.findById(id);
+    const products = bag.products;
+    const productsData = [];
+
+    for (let i = 0; i < products.length; i++) {
+        const product = await Product.findById(products[i]);
+        productsData.push(product);
+    }
+    res.json(productsData);
+};
+
 const getBag = async (req, res = response) => {
     const { id } = req.params;
     const bag = await Bag.find({user:id});
@@ -83,6 +96,7 @@ const verifyProducts = async (products) =>{
 
 module.exports = {
     bagGet,
+    bagProductsGet,
     getBag,
     bagPost,
     bagPut,
