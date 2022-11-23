@@ -2,7 +2,7 @@ const {uploadFile} = require("../helpers/upload-file");
 const {deleteFile} = require("../helpers/delete-file");
 const Category = require("../models/category");
 
-const categoriesGet = async (res) => {
+const categoriesGet = async (req, res) => {
     const query = { status: true };
 
     const [total, categories] = await Promise.all([
