@@ -18,7 +18,7 @@ router.get("/", categoriesGet);
 router.get(
     "/:id",
     [
-        check("id", "Invalid Mongo ID"),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(categoryExistByID),
         validateFields,
     ],
@@ -30,7 +30,6 @@ router.post(
     [
         validateJWT,
         isAdminRole,
-        check("_id", "ID is required").not().isEmpty(),
         check("name", "Name is required").not().isEmpty(),
         validateFields,
     ],
@@ -42,7 +41,7 @@ router.put(
     [
         validateJWT,
         isAdminRole,
-        check("_id", "ID is required").not().isEmpty(),
+        check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(categoryExistByID),
         check("name", "Name is required").not().isEmpty(),
         validateFields,

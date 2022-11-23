@@ -2,7 +2,7 @@ const {uploadFile} = require("../helpers/upload-file");
 const {deleteFile} = require("../helpers/delete-file");
 const Category = require("../models/category");
 
-const categoriesGet = async (req, res) => {
+const categoriesGet = async (res) => {
     const query = { status: true };
 
     const [total, categories] = await Promise.all([
@@ -24,9 +24,9 @@ const getCategory = async (req, res) => {
 };
 
 const categoryPost = async (req, res) => {
-    const id = req.body._id.toUpperCase();
+    const { name } = req.body;
+    const categoryDB = await Category.findOne({name: name});
 
-    const categoryDB = await Category.findById(id);
     if (categoryDB) {
         return res.status(400).json({
             msg: `Category: ${categoryDB.name}, already exists`,
