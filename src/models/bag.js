@@ -11,6 +11,18 @@ const bagSchema = mongoose.Schema({
             type:String,
             require:true
         },
+        name:{
+            type:String,
+            require:true
+        },
+        size:{
+            type:String,
+            require:true
+        },
+        color:{
+            type:String,
+            require:true
+        },
         amount:{
             type:Number,
             default:1
