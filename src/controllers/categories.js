@@ -61,9 +61,10 @@ const categoryPost = async (req, res) => {
 const categoryPut = async (req, res) => {
     const { id } = req.params;
     const newCategory = {...req.body};
+    const type = "categories";
 
     if(req.files?.picture){
-        const result = await uploadFile(req.files.picture.tempFilePath);
+        const result = await uploadFile(req.files.picture.tempFilePath, type);
         newCategory.picture = {
             public_id: result.public_id,
             secure_url: result.secure_url

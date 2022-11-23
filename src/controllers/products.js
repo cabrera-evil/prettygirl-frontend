@@ -74,9 +74,10 @@ const productPost = async (req, res) => {
 const productPut = async (req, res = response) => {
     const { id } = req.params;
     const newProduct = {...req.body};
+    const type = "products";
 
     if(req.files?.picture){
-        const result = await uploadFile(req.files.picture.tempFilePath);
+        const result = await uploadFile(req.files.picture.tempFilePath, type);
         newProduct.picture = {
             public_id: result.public_id,
             secure_url: result.secure_url
