@@ -96,10 +96,9 @@ const productPut = async (req, res = response) => {
 
 const productDelete = async (req, res = response) => {
     const { id } = req.params;
-    const productDB = await Product.findByIdAndDelete(id);
-    
-    deleteFile(categoryDB.picture.public_id);
-    res.json(productDB);
+    const unabledProduct = await Product.findByIdAndUpdate(id, {available: false});
+
+    res.json(unabledProduct);
 };
 
 //Helper functions
