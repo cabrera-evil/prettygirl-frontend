@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
+const fileUpload = require("express-fileupload");
 
 // Required routes
 var indexRouter = require('./routes/index');
@@ -16,6 +17,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.use(cors());
+
+// File Upload
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+    createParentPath: true,
+  })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
