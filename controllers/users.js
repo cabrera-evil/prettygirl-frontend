@@ -96,7 +96,6 @@ const validateRole = (role) =>{
     return false;
 }
 
-
 module.exports = {
     usersGet,
     getUser,

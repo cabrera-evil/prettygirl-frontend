@@ -15,8 +15,18 @@ Bag
                 _id:{
                         type:String,
                 },
+                name:{
+                        type:String,
+                },
+                size:{
+                        type:String,
+                },
+                color:{
+                        type:String
+                },
                 amount:{
                         type:Number,
+                },
         }
 
 Booking
@@ -46,9 +56,6 @@ Booking
 Category
 -
 
-        _id: {
-                type: String,
-        },
         name: {
                 type: String,
         },
@@ -95,16 +102,7 @@ User
         name: {
                 type: String,
         },
-        dui: {
-                type: String,
-        },
         email: {
-                type: String,
-        },
-        phone: {
-                type: String,
-        },
-        address: {
                 type: String,
         },
         password: {

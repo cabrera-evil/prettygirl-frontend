@@ -19,24 +19,23 @@ You can also run
 Application Path
 -----------
 
-        app.use('/', indexRouter);
-        app.use('/api/auth', authRouter);
-        app.use('/api/bags', bagsRouter);
-        app.use('/api/bookings', bookingRouter);
-        app.use('/api/categories', categoryRouter);
-        app.use('/api/products', productRouter);
-        app.use('/api/users', usersRouter);
+        /api/auth
+        /api/bags
+        /api/bookings
+        /api/categories
+        /api/products
+        /api/users
 
 Router File
 -----------
 
-        var indexRouter = require('./routes/index');
-        var authRouter = require('./routes/auth');
-        var bagsRouter = require('./routes/bags');
-        var bookingRouter = require('./routes/bookings');
-        var categoryRouter = require('./routes/categories');
-        var productRouter = require('./routes/products');
-        var usersRouter = require('./routes/users');
+        /routes/index
+        /routes/auth
+        /routes/bags
+        /routes/bookings
+        /routes/categories
+        /routes/products
+        /routes/users
 
 Release Notes
 -------------

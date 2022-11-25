@@ -101,7 +101,7 @@ const productPut = async (req, res = response) => {
     res.json(updatedProduct);
 };
 
-// Delete an specific product
+// Set product status to unavailable
 const productDelete = async (req, res = response) => {
     const { id } = req.params;
     const unabledProduct = await Product.findByIdAndUpdate(id, {available: false});
