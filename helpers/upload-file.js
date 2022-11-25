@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 
-// arrow async function
+// Upload an image to cloudinary
 async function uploadFile(fielPath, type) {
   try {
     return await cloudinary.uploader.upload(fielPath, {

@@ -2,6 +2,7 @@ const {uploadFile} = require("../helpers/upload-file");
 const {deleteFile} = require("../helpers/delete-file");
 const Category = require("../models/category");
 
+// Get all categories
 const categoriesGet = async (req, res) => {
     const query = { status: true };
 
@@ -16,6 +17,7 @@ const categoriesGet = async (req, res) => {
     });
 };
 
+// Get an specific category
 const getCategory = async (req, res) => {
     const { id } = req.params;
     const category = await Category.findById(id);
@@ -23,6 +25,7 @@ const getCategory = async (req, res) => {
     res.json(category);
 };
 
+// Post a new category
 const categoryPost = async (req, res) => {
     const { name } = req.body;
     const categoryDB = await Category.findOne({name: name});
@@ -33,10 +36,10 @@ const categoryPost = async (req, res) => {
         });
     }
     else{
-        const data = {...req.body};
-        const category = new Category(data);
+        const category = new Category(req.body);
         const type = "categories";
 
+        // Upload file to cloudinary
         if(req.files?.picture){
             const result = await uploadFile(req.files.picture.tempFilePath, type);
             category.picture = {
@@ -44,6 +47,7 @@ const categoryPost = async (req, res) => {
                 secure_url: result.secure_url
             }
         }
+        // Setting the default image if the user doesn't upload a new one
         else{
             category.picture = {
                 public_id: "none",
@@ -58,11 +62,13 @@ const categoryPost = async (req, res) => {
     }
 };
 
+// Put an specific category
 const categoryPut = async (req, res) => {
     const { id } = req.params;
     const newCategory = {...req.body};
     const type = "categories";
 
+    // Upload file to cloudinary
     if(req.files?.picture){
         const result = await uploadFile(req.files.picture.tempFilePath, type);
         newCategory.picture = {
@@ -70,6 +76,7 @@ const categoryPut = async (req, res) => {
             secure_url: result.secure_url
         }
     }
+    // Setting the default image if the user doesn't upload a new one
     else{
         newCategory.picture = {
             public_id: "none",
@@ -81,10 +88,12 @@ const categoryPut = async (req, res) => {
     res.json(updatedCategory);
 };
 
+// Delete an specific category
 const categoryDelete = async (req, res) => {
     const { id } = req.params;
+    // Delete category from database
     const categoryDB = await Category.findByIdAndDelete(id);
-
+    // Delete category image from cloudinary
     deleteFile(categoryDB.picture.public_id);
     res.json(categoryDB);
 };

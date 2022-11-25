@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
 
+// Generate a new JWT
 const generateJWT = (uid = "") => {
   return new Promise((resolve, reject) => {
     const payload = { uid };
@@ -23,6 +24,7 @@ const generateJWT = (uid = "") => {
   });
 };
 
+// Validate JWT
 const checkJTW = async (token = "") => {
   try {
     if (token.length <= 10) {

@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
-//Cloudinary Connection
 
+//Cloudinary configuration
 const config = async () => {
     cloudinary.config({ 
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 

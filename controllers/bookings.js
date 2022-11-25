@@ -1,5 +1,6 @@
 const Booking = require("../models/booking");
 
+// Get all bookings
 const bookingGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
@@ -17,6 +18,7 @@ const bookingGet = async (req, res) => {
     });
 };
 
+// Get an specific booking
 const getBooking = async (req, res = response) => {
     const { id } = req.params;
     const booking = await Booking.findById(id)
@@ -24,9 +26,9 @@ const getBooking = async (req, res = response) => {
     res.json(booking);
 };
 
+// Post a new booking
 const bookingPost = async (req, res) => {
-    const data = {...req.body};
-    const booking = new Booking(data);
+    const booking = new Booking(req.body);
 
     await booking.save();
     res.json({
@@ -34,6 +36,7 @@ const bookingPost = async (req, res) => {
     });
 };
 
+// Put an specific booking
 const bookingPut = async (req, res) => {
     const { id } = req.params;
     const newBooking = {...req.body};
@@ -42,6 +45,7 @@ const bookingPut = async (req, res) => {
     res.json(updatedBooking);
 };
 
+// Delete an specific booking
 const bookingDelete = async (req, res) => {
     const { id } = req.params;
 

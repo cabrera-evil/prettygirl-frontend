@@ -1,7 +1,10 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
+
+// Import middlewares
 const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
+// Import controllers
 const {
     categoriesGet,
     getCategory,
@@ -9,12 +12,16 @@ const {
     categoryPut,
     categoryDelete,
 } = require("../controllers/categories");
+
+// Import helpers
 const { categoryExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
+// Get all categories
 router.get("/", categoriesGet);
 
+// Get an specific category
 router.get(
     "/:id",
     [
@@ -25,6 +32,7 @@ router.get(
     getCategory
 );
 
+// Post a new category
 router.post(
     "/",
     [
@@ -36,6 +44,7 @@ router.post(
     categoryPost
 );
 
+// Put an specific category
 router.put(
     "/:id",
     [
@@ -49,6 +58,7 @@ router.put(
     categoryPut
 );
 
+// Delete an specific category
 router.delete(
     "/:id",
     [

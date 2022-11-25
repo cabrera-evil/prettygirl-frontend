@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const { generateJWT } = require("../helpers/generate-jwt");
 
+// Login auth to get token and verify data
 const login = async (req, res = response) => {
     const { email, password } = req.body;
 
@@ -40,6 +41,7 @@ const login = async (req, res = response) => {
     }
 };
 
+// Validate if token stills valid
 const validateToken = async (req, res = response) => {
     const {token} = req.params;
     let valid = await jwtVerify(token, process.env.PRIVATEKEY);
@@ -53,6 +55,7 @@ const validateToken = async (req, res = response) => {
     });
 }
 
+// Renew token to extend the expiration date
 const renewToken = async (req, res = response) => {
     const { user } = req;
     const token = await generateJWT(user.id);

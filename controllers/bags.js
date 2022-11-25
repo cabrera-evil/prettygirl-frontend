@@ -1,6 +1,7 @@
 const Bag = require("../models/bag");
 const Product = require("../models/product");
 
+// Get all bags
 const bagGet = async (req, res) => {
     const { limit = 5, skip = 0 } = req.query;
     const query = { status: true };
@@ -18,6 +19,7 @@ const bagGet = async (req, res) => {
     });
 };
 
+// Get all products from a bag
 const bagProductsGet = async (req, res) => {
     const { id } = req.params;
     const bag = await Bag.findById(id);
@@ -31,6 +33,7 @@ const bagProductsGet = async (req, res) => {
     res.json(productsData);
 };
 
+// Get an specific bag
 const getBag = async (req, res = response) => {
     const { id } = req.params;
     const bag = await Bag.find({user:id});
@@ -39,6 +42,7 @@ const getBag = async (req, res = response) => {
     res.json(bag);
 };
 
+// Post a new bag
 const bagPost = async (req, res) => {
     const bag = new Bag(req.body);
 
@@ -55,6 +59,7 @@ const bagPost = async (req, res) => {
     }
 };
 
+// Put an specific bag
 const bagPut = async (req, res) => {
     const { id } = req.params;
     const newBag = {...req.body};
@@ -70,6 +75,7 @@ const bagPut = async (req, res) => {
     }
 };
 
+// Delete an specific bag
 const bagDelete = async (req, res) => {
     const { id } = req.params;
 

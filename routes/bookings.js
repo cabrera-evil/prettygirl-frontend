@@ -1,7 +1,10 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
+
+// Import middlewares
 const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
+// Import controllers
 const {
     bookingGet,
     getBooking,
@@ -9,12 +12,16 @@ const {
     bookingPut,
     bookingDelete,
 } = require("../controllers/bookings");
+
+// Import helpers
 const { bookingExistByID, productExistByID, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
+// Get all bookings
 router.get("/", validateJWT, bookingGet);
 
+// Get an specific booking
 router.get(
     "/:id",
     [
@@ -26,6 +33,7 @@ router.get(
     getBooking
 );
 
+// Post a new booking
 router.post(
     "/",
     [
@@ -41,6 +49,7 @@ router.post(
     bookingPost
 );
 
+// Put an specific booking
 router.put(
     "/:id",
     [
@@ -58,6 +67,7 @@ router.put(
     bookingPut
 );
 
+// Delete an specific booking
 router.delete(
     "/:id",
     [

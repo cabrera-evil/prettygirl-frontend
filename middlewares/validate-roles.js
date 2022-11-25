@@ -1,5 +1,6 @@
 const { response } = require("express");
 
+// Validate if the user has admin role
 const isAdminRole = (req, res = response, next) => {
   if (!req.user) {
     return res.status(500).json({
@@ -18,6 +19,7 @@ const isAdminRole = (req, res = response, next) => {
   next();
 };
 
+// Validate the role permissions required to perform an action
 const hasRole = (...roles) => {
   return (req, res = response, next) => {
     if (!req.user) {

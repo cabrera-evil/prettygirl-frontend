@@ -1,7 +1,10 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
+
+// Import middlewares
 const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
+// Import controllers
 const {
     feedProductsGet,
     productsGet,
@@ -10,6 +13,8 @@ const {
     productPut,
     productDelete,
 } = require("../controllers/products");
+
+// Import helpers
 const {
     categoryExistByID,
     productExistByID,
@@ -17,9 +22,11 @@ const {
 
 const router = Router();
 
+// Get all products
 router.get("/feed", feedProductsGet);
 router.get("/", productsGet);
 
+// Get an specific product
 router.get(
     "/:id",
     [
@@ -30,6 +37,7 @@ router.get(
     getProduct
 );
 
+// Post a new product
 router.post(
     "/",
     [
@@ -49,6 +57,7 @@ router.post(
     productPost
 );
 
+// Put an specific product
 router.put(
     "/:id",
     [
@@ -70,6 +79,7 @@ router.put(
     productPut
 );
 
+// Delete an specific product
 router.delete(
     "/:id",
     [

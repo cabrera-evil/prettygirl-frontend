@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const Booking = require("../models/booking");
 const Bag = require("../models/bag")
 
+// Validate if the email exist
 const emailExist = async (email = "") => {
   const emailExist = await User.findOne({ email });
 
@@ -12,6 +13,7 @@ const emailExist = async (email = "") => {
   }
 };
 
+// Validate if the user exist
 const userExistByID = async (id = "") => {
   const userExist = await User.findById(id);
   if (!userExist) {
@@ -19,6 +21,7 @@ const userExistByID = async (id = "") => {
   }
 };
 
+// Validate if the category exist
 const categoryExistByID = async (name = "") => {
   const categoryExist = await Category.findOne({name});
   if (!categoryExist) {
@@ -26,6 +29,7 @@ const categoryExistByID = async (name = "") => {
   }
 };
 
+// Validate if the product exist
 const productExistByID = async (id = "") => {
   const productExist = await Product.findById(id);
   if (!productExist) {
@@ -33,6 +37,7 @@ const productExistByID = async (id = "") => {
   }
 };
 
+// Validate if the booking exist
 const bookingExistByID = async (id = "") => {
   const bookingExist = await Booking.findById(id);
   if (!bookingExist) {
@@ -40,6 +45,7 @@ const bookingExistByID = async (id = "") => {
   }
 };
 
+// Validate if the bag exist by id
 const bagExistByID = async (id = "") => {
   const bagExist = await Bag.findById(id);
   if (!bagExist) {
@@ -47,6 +53,7 @@ const bagExistByID = async (id = "") => {
   }
 };
 
+// Validate if the bag exist by user id
 const bagExistByUser = async (id = "") => {
   const bagExist = await Bag.find({user: id,});
   if (!bagExist) {
@@ -54,6 +61,7 @@ const bagExistByUser = async (id = "") => {
   }
 };
 
+// Validate if the collection it's allowed
 const allowedCollections = (collection = "", collections = []) => {
   const included = collections.includes(collection);
   if (!included) {

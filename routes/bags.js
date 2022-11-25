@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { check } = require("express-validator");
 const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 
+// Import controllers
 const {
     bagGet,
     bagProductsGet,
@@ -10,12 +11,16 @@ const {
     bagPut,
     bagDelete,
 } = require("../controllers/bags");
+
+// Import helpers
 const { bagExistByID, bagExistByUser, userExistByID } = require("../helpers/db-validators");
 
 const router = Router();
 
+// Get all bags
 router.get("/", validateJWT, bagGet);
 
+// Get an specific bag
 router.get(
     "/:id",
     [
@@ -27,6 +32,7 @@ router.get(
     getBag
 );
 
+// Get all products from a bag
 router.get(
     "/products/:id",
     [
@@ -38,6 +44,7 @@ router.get(
     bagProductsGet
 )
 
+// Post a new bag
 router.post(
     "/",
     [
@@ -51,6 +58,7 @@ router.post(
     bagPost
 );
 
+// Put an specific bag
 router.put(
     "/:id",
     [
@@ -64,6 +72,7 @@ router.put(
     bagPut
 );
 
+// Delete an specific bag
 router.delete(
     "/:id",
     [
