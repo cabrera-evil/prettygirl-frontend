@@ -9,6 +9,7 @@ const {
     feedProductsGet,
     productsGet,
     getProduct,
+    getProductsByCategory,
     productPost,
     productPut,
     productDelete,
@@ -35,6 +36,17 @@ router.get(
         validateFields,
     ],
     getProduct
+);
+
+// Get products by category
+router.get(
+    "/category/:category",
+    [
+        check("category", "Category is required").not().isEmpty(),
+        check("category").custom(categoryExistByID),
+        validateFields,
+    ],
+    getProductsByCategory
 );
 
 // Post a new product

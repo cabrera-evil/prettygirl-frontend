@@ -33,6 +33,22 @@ const productsGet = async (req, res = response) => {
     });
 };
 
+// Get products by category
+const getProductsByCategory = async (req, res = response) => {
+    const { category } = req.params;
+    const query = { status: true, category: category };
+
+    const [total, products] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query),
+    ]);
+
+    res.json({
+        total,
+        products,
+    });
+};
+
 // Get an specific product
 const getProduct = async (req, res = response) => {
     const { id } = req.params;
@@ -120,6 +136,7 @@ const validateGender = (gender) =>{
 module.exports = {
     feedProductsGet,
     productsGet,
+    getProductsByCategory,
     getProduct,
     productPost,
     productPut,
