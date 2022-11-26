@@ -25,18 +25,22 @@ const productsGet = async (req, res = response) => {
     }
     else {
         // Access to products array
-        const products = await Product.find(filters);
+        const productsFiltered = await Product.find(filters);
 
         // Find filtered products
-        const filteredProducts = products.filter(product => {
+        const products = productsFiltered.filter(product => {
             let isValid = true;
             for (const key in filters) {
                 isValid = isValid && product[key] == filters[key];
             }
             return isValid;
         })
+
+        const total = products.length;
+
         res.json({
-            filteredProducts
+            total,
+            products
         });
     }
 };
