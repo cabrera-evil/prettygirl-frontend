@@ -42,17 +42,7 @@ const categoryPost = async (req, res) => {
         // Upload file to cloudinary
         if(req.files?.picture){
             const result = await uploadFile(req.files.picture.tempFilePath, type);
-            category.picture = {
-                public_id: result.public_id,
-                secure_url: result.secure_url
-            }
-        }
-        // Setting the default image if the user doesn't upload a new one
-        else{
-            category.picture = {
-                public_id: "none",
-                secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
-            }
+            category.picture = result.url;
         }
 
         await category.save();
@@ -71,17 +61,7 @@ const categoryPut = async (req, res) => {
     // Upload file to cloudinary
     if(req.files?.picture){
         const result = await uploadFile(req.files.picture.tempFilePath, type);
-        newCategory.picture = {
-            public_id: result.public_id,
-            secure_url: result.secure_url
-        }
-    }
-    // Setting the default image if the user doesn't upload a new one
-    else{
-        newCategory.picture = {
-            public_id: "none",
-            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
-        }
+        newCategory.picture = result.url;
     }
 
     const updatedCategory = await Category.findByIdAndUpdate(id, newCategory , {new: true});
@@ -93,8 +73,6 @@ const categoryDelete = async (req, res) => {
     const { id } = req.params;
     // Delete category from database
     const categoryDB = await Category.findByIdAndDelete(id);
-    // Delete category image from cloudinary
-    deleteFile(categoryDB.picture.public_id);
     res.json(categoryDB);
 };
 

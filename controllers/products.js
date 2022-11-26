@@ -63,23 +63,15 @@ const getProduct = async (req, res = response) => {
 // Post a new product
 const productPost = async (req, res) => {
     const product = new Product(req.body);
+
     const type = "products";
 
     // Upload file to cloudinary
     if(req.files?.picture){
         const result = await uploadFile(req.files.picture.tempFilePath, type);
-        product.picture = {
-            public_id: result.public_id,
-            secure_url: result.secure_url
-        }
+        product.picture = result.url;
     }
-    // Setting the default image if the user doesn't upload a new one
-    else{
-        product.picture = {
-            public_id: "none",
-            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
-        }
-    }
+
     // Validate if the gender is valid to save the product
     if(validateGender(product.gender)){
         await product.save();
@@ -99,25 +91,18 @@ const productPost = async (req, res) => {
 const productPut = async (req, res = response) => {
     const { id } = req.params;
     const newProduct = {...req.body};
-    const type = "products";
 
-    // Upload file to cloudinary
-    if(req.files?.picture){
-        const result = await uploadFile(req.files.picture.tempFilePath, type);
-        newProduct.picture = {
-            public_id: result.public_id,
-            secure_url: result.secure_url
-        }
+    // Validate if the gender is valid to save the product
+    if(validateGender(product.gender)){
+        const updatedProduct = await Product.findByIdAndUpdate(id, newProduct , {new: true});
+        res.json(updatedProduct);
     }
-    // Setting the default image if the user doesn't upload a new one
+    // Show an error and don't save the product
     else{
-        product.picture = {
-            public_id: "none",
-            secure_url: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
-        }
+        return res.status(400).json({
+            msg: "Invalid gender"
+        });
     }
-    const updatedProduct = await Product.findByIdAndUpdate(id, newProduct , {new: true});
-    res.json(updatedProduct);
 };
 
 // Set product status to unavailable

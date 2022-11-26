@@ -35,8 +35,8 @@ const productSchema = mongoose.Schema({
         required: true
     },
     picture: {
-        public_id: String,
-        secure_url: String
+        type: String,
+        default: "https://res.cloudinary.com/cabrera-evil/image/upload/v1668401831/prettygirl-api/default/no-image_qtyjtw.jpg"
     }
 },
     {
