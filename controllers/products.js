@@ -2,22 +2,6 @@ const { response } = require("express");
 const {uploadFile} = require("../helpers/upload-file");
 const Product = require("../models/product");
 
-// Get the first 5 products
-const feedProductsGet = async (req, res = response) => {
-    const { limit = 5, skip = 0 } = req.query;
-    const query = { status: true };
-
-    const [total, products] = await Promise.all([
-        Product.countDocuments(query),
-        Product.find(query).limit(Number(limit)).skip(Number(skip)),
-    ]);
-
-    res.json({
-        total,
-        products,
-    });
-};
-
 // Get all products
 const productsGet = async (req, res = response) => {
     const query = { status: true };
@@ -33,8 +17,27 @@ const productsGet = async (req, res = response) => {
     });
 };
 
+// Get the first 5 products
+const productsGetByLimit = async (req, res = response) => {
+    const { limit = req.params.inputLimit, skip = 0 } = req.query;
+    const query = { status: true };
+
+    const [total, products] = await Promise.all([
+        Product.countDocuments(query),
+        Product.find(query)
+            .limit(Number(limit))
+            .skip(Number(skip))
+            .sort({createdAt: -1})
+    ]);
+
+    res.json({
+        total,
+        products
+    });
+};
+
 // Get products by category
-const getProductsByCategory = async (req, res = response) => {
+const productsGetByCategory = async (req, res = response) => {
     const { category } = req.params;
     const query = { status: true, category: category };
 
@@ -134,9 +137,9 @@ const validateGender = (gender) =>{
 }
 
 module.exports = {
-    feedProductsGet,
     productsGet,
-    getProductsByCategory,
+    productsGetByLimit,
+    productsGetByCategory,
     getProduct,
     productPost,
     productPut,
