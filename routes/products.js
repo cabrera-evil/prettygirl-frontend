@@ -7,9 +7,7 @@ const { validateJWT, validateFields, isAdminRole } = require("../middlewares");
 // Import controllers
 const {
     productsGet,
-    productsGetByLimit,
     getProduct,
-    productsGetByCategory,
     productPost,
     productPut,
     productDelete,
@@ -23,11 +21,8 @@ const {
 
 const router = Router();
 
-// Get all products
+// Get products by search engine
 router.get("/", productsGet);
-
-// Get products by limit
-router.get("/limit/:inputLimit", productsGetByLimit);
 
 // Get an specific product
 router.get(
@@ -38,17 +33,6 @@ router.get(
         validateFields,
     ],
     getProduct
-);
-
-// Get products by category
-router.get(
-    "/category/:category",
-    [
-        check("category", "Category is required").not().isEmpty(),
-        check("category").custom(categoryExistByID),
-        validateFields,
-    ],
-    productsGetByCategory
 );
 
 // Post a new product
