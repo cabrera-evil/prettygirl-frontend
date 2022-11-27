@@ -40,7 +40,7 @@ const bookingSchema = mongoose.Schema({
     },
     estimatedDelivery: {
         type: Date,
-        required: true
+        default: null
     }
 },
     {

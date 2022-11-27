@@ -43,7 +43,6 @@ router.post(
         check("user", "User is required").not().isEmpty(),
         check("user").custom(userExistByID),
         check("address", "Address is required").not().isEmpty(),
-        check("estimatedDelivery", "Estimated Delivery is required").not().isEmpty(),
         validateFields,
     ],
     bookingPost
@@ -61,7 +60,6 @@ router.put(
         check("user", "User is required").not().isEmpty(),
         check("user").custom(userExistByID),
         check("address", "Address is required").not().isEmpty(),
-        check("estimatedDelivery", "Estimated Delivery is required").not().isEmpty(),
         validateFields,
     ],
     bookingPut
