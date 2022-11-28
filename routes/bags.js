@@ -77,7 +77,6 @@ router.delete(
     "/:id",
     [
         validateJWT,
-        isAdminRole,
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(bagExistByID),
         validateFields,

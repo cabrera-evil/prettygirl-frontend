@@ -52,6 +52,7 @@ router.put(
     "/:id",
     [
         validateJWT,
+        isAdminRole,
         check("description.products", "products are required").not().isEmpty(),
         check("id").custom(bookingExistByID),
         check("user", "User is required").not().isEmpty(),
@@ -67,6 +68,7 @@ router.delete(
     "/:id",
     [
         validateJWT,
+        isAdminRole,
         check("id", "Invalid Mongo ID").isMongoId(),
         check("id").custom(bookingExistByID),
         validateFields,
