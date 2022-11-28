@@ -32,12 +32,16 @@ const productsGet = async (req, res = response) => {
         const products = productsFiltered.filter(product => {
             let isValid = true;
             for (const key in filters) {
-                if (key == 'gender') {
-                    filters[key].map(gender => {
-                        if (gender == product[key]) {
-                            isValid = true;
-                        }
-                    }, product[key]);
+                try{
+                    if (key == 'gender') {
+                        filters[key].map(gender => {
+                            if (gender == product[key]) {
+                                isValid = true;
+                            }
+                        }, product[key]);
+                    }
+                }catch(error){
+                    console.log(error);
                 }
                 if (key == "color") {
                     product[key].map(color => {
