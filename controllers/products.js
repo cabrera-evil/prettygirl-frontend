@@ -33,12 +33,11 @@ const productsGet = async (req, res = response) => {
             let isValid = true;
             for (const key in filters) {
                 if (key == 'gender') {
-                    if (product[key] == filters[key]) {
-                        return isValid = true;
-                    }
-                    else {
-                        return isValid = false;
-                    }
+                    filters[key].map(gender => {
+                        if (gender == product[key]) {
+                            isValid = true;
+                        }
+                    }, product[key]);
                 }
                 if (key == "color") {
                     product[key].map(color => {
@@ -63,7 +62,6 @@ const productsGet = async (req, res = response) => {
                     }, filters[key]);
                 }
             }
-            console.log(`valid: ${isValid}`);
             return isValid;
         })
         const total = products.length;
