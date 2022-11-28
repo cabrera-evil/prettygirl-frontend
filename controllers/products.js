@@ -41,7 +41,7 @@ const productsGet = async (req, res = response) => {
                         }, product[key]);
                     }
                 }catch(error){
-                    console.log(error);
+                    
                 }
                 if (key == "color") {
                     product[key].map(color => {
