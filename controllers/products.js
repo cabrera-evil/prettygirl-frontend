@@ -45,9 +45,6 @@ const productsGet = async (req, res = response) => {
                         if (color == filters[key]) {
                             return isValid = true;
                         }
-                        else {
-                            return isValid = false;
-                        }
                     }, filters[key]);
                 }
                 if (key == 'category') {
@@ -62,9 +59,6 @@ const productsGet = async (req, res = response) => {
                     product[key].map(size => {
                         if (size == filters[key]) {
                             return isValid = true;
-                        }
-                        else {
-                            return isValid = false;
                         }
                     }, filters[key]);
                 }
