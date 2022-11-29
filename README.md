@@ -1,3 +1,19 @@
+# PrettyGirl - API
+
+
+URL
+-----
+
+You must use the following URL to make API requests:
+
+        https://prettygirl-api-production.up.railway.app/api/
+
+API Documentation
+-----
+You can find the API documentation in the following link:
+
+        https://documenter.getpostman.com/view/23770643/2s8YsxvWz1
+
 Installation
 ------------
 
@@ -40,6 +56,8 @@ Router File
 Release Notes
 -------------
 
-### v 0.0.1
+### v 1.0.0
 
-Currently on development
+[API Documentation](https://documenter.getpostman.com/view/23770643/2s8YsxvWz1)
+
+[Deployed on Railway](https://prettygirl-api-production.up.railway.app/)

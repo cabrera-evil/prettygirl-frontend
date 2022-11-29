@@ -1,5 +1,4 @@
-Requests
-------------
+# Requests
 
 You must use the following routes for every request:
 
@@ -7,8 +6,9 @@ You must use the following routes for every request:
 Auth
 -
 
-        POST /auth/login
+        GET /auth/
         GET /auth/validate/:token
+        POST /auth/login
 
 Bag
 -
@@ -42,7 +42,7 @@ Product
 -
 
         GET /products
-        GET /products/feed
+        GET /products?:filters
         GET /products/:id
         POST /products
         PUT /products/:id
@@ -60,6 +60,8 @@ User
 Release Notes
 -------------
 
-### v 0.0.1
+### v 1.0.0
 
-Currently on development
+[API Documentation](https://documenter.getpostman.com/view/23770643/2s8YsxvWz1)
+
+[Deployed on Railway](https://prettygirl-api-production.up.railway.app/)
