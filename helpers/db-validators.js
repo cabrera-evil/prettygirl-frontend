@@ -21,11 +21,19 @@ const userExistByID = async (id = "") => {
   }
 };
 
-// Validate if the category exist
+// Validate if the category exist by id
 const categoryExistByID = async (id = "") => {
   const categoryExist = await Category.findById(id);
   if (!categoryExist) {
     throw new Error(`Category:${id} does not exist`);
+  }
+};
+
+// Validate if the category exist by name
+const categoryExistByName = async (name = "") => {
+  const categoryExist = await Category.findOne({name});
+  if (!categoryExist) {
+    throw new Error(`Category:${name} does not exist`);
   }
 };
 
@@ -65,6 +73,7 @@ module.exports = {
   emailExist,
   userExistByID,
   categoryExistByID,
+  categoryExistByName,
   productExistByID,
   bookingExistByID,
   bagExistByID,
