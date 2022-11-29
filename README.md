@@ -1,21 +1,4 @@
-# PrettyGirl - API
-
-
-URL
------------
-
-You can use the production server using the following URL:
-
-        https://prettygirl-api-production.up.railway.app/
-
-API Documentation
------------
-You can find the API documentation in the following link:
-
-        https://documenter.getpostman.com/view/23770643/2s8YsxvWz1
-
 ## Installation
------------
 
 Install node using nvm
 -----------
@@ -41,7 +24,45 @@ After installing node you need to install the required dependencies by running t
 
         npm i
 
-## Used Packages
+Setup environment variables
+-----------
+
+The first thing you need to do before running the application is to create a `.env` file in the root directory of the project and add the following variables:
+
+        # MONGODB
+        MONGODB_CNN = '(Your MongoDB connection string)'
+        
+        # CLOUDINARY
+        CLOUDINARY_CLOUD_NAME = '(Your Cloudinary cloud name)'
+        CLOUDINARY_API_KEY = '(Your Cloudinary API key)'
+        CLOUDINARY_API_SECRET = '(Your Cloudinary API secret)'
+        
+        # JSON WEB TOKEN
+        JWT_SECRET= '(Your JWT secret)'
+
+# Running the application
+
+Now you can use the API by running the following command:
+
+       npm start
+
+You can also run if you want to use the developer mode:
+
+        npm run dev
+
+# Connecting to server
+
+After running locally the application you can connect to the server using the following URL:
+
+        http://localhost:3000/
+
+Or if you are using the production server you can connect to the server using the following URL:
+
+        https://prettygirl-api-production.up.railway.app/
+
+# Helpful information
+
+Used Packages
 -----------
 
 You can take a look at the used packages in the following link:
@@ -63,68 +84,11 @@ You can take a look at the used packages in the following link:
 -   [morgan](https://www.npmjs.com/package/morgan)
 -   [uuid](https://www.npmjs.com/package/uuid)
 
-## Usage
------------
-Setup environment variables
------------
-
-The first thing you need to do before running the application is to create a `.env` file in the root directory of the project and add the following variables:
-
-        # MONGODB
-        MONGODB_CNN = '(Your MongoDB connection string)'
-        
-        # CLOUDINARY
-        CLOUDINARY_CLOUD_NAME = '(Your Cloudinary cloud name)'
-        CLOUDINARY_API_KEY = '(Your Cloudinary API key)'
-        CLOUDINARY_API_SECRET = '(Your Cloudinary API secret)'
-        
-        # JSON WEB TOKEN
-        JWT_SECRET= '(Your JWT secret)'
-
-## Running the application
------------
-
-Now you can use the API by running the following command:
-
-       npm start
-
-You can also run if you want to use the developer mode:
-
-        npm run dev
-
-## Connecting to server
------------
-
-After running locally the application you can connect to the server using the following URL:
-
-        http://localhost:3000/
-
-Or if you are using the production server you can connect to the server using the following URL:
-
-        https://prettygirl-api-production.up.railway.app/
-
-## Helpful information
------------
-
-Application Path
------------
-
-You may use the following paths to make requests to the API:
-
-        /api/auth
-        /api/bags
-        /api/bookings
-        /api/categories
-        /api/products
-        /api/users
-
-### Release Notes
------------
+## Release Notes
 
 v 1.0.0
 
-### Useful Links
------------
+## Useful Links
 
 [API Documentation](https://documenter.getpostman.com/view/23770643/2s8YsxvWz1)
 
