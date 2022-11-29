@@ -33,11 +33,10 @@ const bagProductsGet = async (req, res) => {
     res.json(productsData);
 };
 
-// Get an specific bag
+// Get an specific bag by user
 const getBag = async (req, res = response) => {
     const { id } = req.params;
     const bag = await Bag.find({user:id});
-    console.log(bag)
 
     res.json(bag);
 };

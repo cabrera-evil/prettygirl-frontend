@@ -15,7 +15,6 @@ const {
 
 // Import helpers
 const {
-    categoryExistByID,
     categoryExistByName,
     productExistByID,
 } = require("../helpers/db-validators");
