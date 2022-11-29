@@ -149,13 +149,11 @@ User
                 default: 'CLIENT_ROLE'
         },
 
-### Release Notes
------------
+## Release Notes
 
 v 1.0.0
 
-### Useful Links
------------
+## Useful Links
 
 [API Documentation](https://documenter.getpostman.com/view/23770643/2s8YsxvWz1)
 
