@@ -22,10 +22,10 @@ const userExistByID = async (id = "") => {
 };
 
 // Validate if the category exist
-const categoryExistByID = async (name = "") => {
-  const categoryExist = await Category.findOne({name});
+const categoryExistByID = async (id = "") => {
+  const categoryExist = await Category.findById(id);
   if (!categoryExist) {
-    throw new Error(`Category:${name} does not exist`);
+    throw new Error(`Category:${id} does not exist`);
   }
 };
 
@@ -61,15 +61,6 @@ const bagExistByUser = async (id = "") => {
   }
 };
 
-// Validate if the collection it's allowed
-const allowedCollections = (collection = "", collections = []) => {
-  const included = collections.includes(collection);
-  if (!included) {
-    throw new Error(`Collection ${collection} not allowed`);
-  }
-  return true;
-};
-
 module.exports = { 
   emailExist,
   userExistByID,
@@ -78,5 +69,4 @@ module.exports = {
   bookingExistByID,
   bagExistByID,
   bagExistByUser,
-  allowedCollections,
 };
