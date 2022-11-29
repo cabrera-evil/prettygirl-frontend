@@ -7,7 +7,6 @@ const productsGet = async (req, res = response) => {
     const filters = req.query;
 
     if (filters.limit) {
-        console.log('limit');
         const { limit, skip = 0 } = req.query;
         const query = { status: true };
 
