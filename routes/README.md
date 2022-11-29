@@ -57,10 +57,13 @@ User
         PUT /users/:id
         DELETE /users/:id
 
-Release Notes
--------------
+### Release Notes
+-----------
 
-### v 1.0.0
+v 1.0.0
+
+### Useful Links
+-----------
 
 [API Documentation](https://documenter.getpostman.com/view/23770643/2s8YsxvWz1)
 
