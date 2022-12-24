@@ -1,0 +1,153 @@
+@import './../../assets/sass/mixins';
+@import './../../assets/sass/variables';
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+
+    background-color: $dark-background-color;
+
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+
+    /* General form styles */
+    form {
+        width: 80%;
+        padding: 3rem;
+        border-radius: 2rem;
+
+        background-color: rgba($color: $light-background-color, $alpha: 0.8);
+
+        position: relative;
+
+        @include flex(column);
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            color: $general-white;
+            font-family: $theme-montserrat;
+            font-weight: lighter;
+            text-align: center;
+        }
+
+        .formFields {
+            width: 80%;
+            @include flex(row);
+            flex-wrap: wrap;
+        }
+
+        .actions {
+            width: 80%;
+            padding: 1rem 0;
+            
+            @include flex(row);
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            a {
+                flex-grow: 1;
+                width: 47%;
+            }
+        }
+
+        .formA {
+            width: 100%;
+            font-size: 1rem;
+        }
+
+    }
+    
+    /* Styles only for description type form */
+    form.description {
+        .formFields {
+            @include flex(column);
+
+            div.cards {
+                padding: 1rem;
+                width: 100%;
+                height: 500px;
+
+                position: relative;
+
+                @include flex(row);
+                justify-content: center;
+                align-items: center;
+
+
+                .cards-wrapper {
+                    padding: 0 2rem;
+                    width: auto;
+                    @include flex(row);
+
+                    overflow-y: hidden;
+                    overflow-x: auto;
+
+                    article.reserva {
+                        height: 450px;
+                    }
+                    
+                    &::-webkit-scrollbar {
+                        -webkit-appearance: none;
+                    }
+                    
+                    &::-webkit-scrollbar:vertical {
+                        width:10px;
+                    }
+                    
+                    &::-webkit-scrollbar-button:increment,&::-webkit-scrollbar-button {
+                        display: none;
+                    } 
+                    
+                    &::-webkit-scrollbar:horizontal {
+                        height: 10px;
+                    }
+                    
+                    &::-webkit-scrollbar-thumb {
+                        background-color: $light-background-color;
+                        border-radius: 20px;
+                        border: 2px solid $general-white;
+                    }
+                    
+                    &::-webkit-scrollbar-track {
+                        border-radius: 10px;  
+                    }
+                }
+
+                
+            }
+
+            /* hr{
+                width: 50%;
+                border: 0.5px $general-white solid;
+
+                align-self: center;
+            }
+
+            hr:last-child {
+                display: none;
+            } */
+        }
+    }
+
+}
+
+
+/* Media query for increasing buttons' width */
+@media only screen and (max-width: 900px) {
+    .form-container form .actions a{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .form-container {
+        padding: 20px 10px;
+        form {
+            padding: 1rem;
+        }   
+    }
+}

@@ -1,0 +1,34 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+section.recommended-products {
+    width: 100%;
+    height: auto;
+    padding: 2rem 3rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "title"
+        "cards";
+
+    background-color: $dark-background-color;
+
+    position: relative;
+
+    .title {
+        font-family: $theme-montserrat;
+        font-size: x-large;
+        color: $general-white;
+    }
+
+    .cards {
+        width: 100%;
+        height: auto;
+
+        @include flex(row);
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}

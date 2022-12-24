@@ -1,0 +1,46 @@
+@import "../../../assets/sass/mixins";
+@import "../../../assets/sass/variables";
+
+.steps-visualizer {
+    width: 50%;
+    padding: 10px;
+
+    align-items: center;
+
+    background-color: $dark-background-color;
+
+    position: relative;
+
+    @include grid(5, 2);
+    grid-template-areas: 'first-text space second-text space third-text'
+                         'first-step first-arrow secod-step second-arrow third-step';
+
+    p {
+        font-family: $theme-montserrat;
+        color: $general-white;
+
+        text-align: center;
+    }
+
+    .step {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arrow-container {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+
+        .arrow {
+            color: $general-white;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .steps-visualizer {
+        width: auto;
+    }
+}

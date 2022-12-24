@@ -1,0 +1,30 @@
+@import '../../../assets/sass/mixins';
+@import '../../../assets/sass/variables';
+
+section.add-product {
+    @include flex(row);
+    flex-wrap: wrap;
+    gap:0;
+
+    background: linear-gradient(90deg, rgba(25,26,39,1) 0%, rgba(91,214,195,1) 50%, rgba(239,35,60,1) 100%);
+
+    .uploader-container, .form-container {
+        width: 50%;
+        height: auto;
+        padding: 1rem;
+
+        flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 900px){
+    section.add-product {
+        gap: 10px;
+    }
+    section.add-product .uploader-container {
+        width: 100%;
+    }
+    section.add-product .form-container {
+        width: 100%;
+    }
+}

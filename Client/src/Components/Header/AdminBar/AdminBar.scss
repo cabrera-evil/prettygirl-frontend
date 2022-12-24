@@ -1,0 +1,82 @@
+@import "../../../assets/sass/mixins";
+@import "../../../assets/sass/variables";
+
+.admin-actions-container {
+    width: 162.4px;
+    height: 100vh;
+    padding: 0 15.84px;
+
+    position: absolute;
+    top: -17px;
+    right: -31px;
+
+    background-color: rgba($color: $black-background, $alpha: 0.7);
+
+    z-index: 2;
+    .admin-actions {
+        width: 100%;
+        height: auto;
+    
+        @include flex(column);
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+
+        hr{
+            width: 100%;
+            border: 0.5px $general-white solid;
+        }
+
+        figure {
+            padding: 10px 5px;
+
+            @include flex(row);
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+
+            i {
+                color: $general-white;
+            }
+
+            p {
+                font-family: $theme-montserrat;
+                color: $general-white; 
+                font-size: small;
+                text-align: center;
+            }
+
+        }
+
+        figure.btn-admin {
+            @include flex(column);   
+            align-self: center;
+        }
+
+        .products-actions {
+            width: 100%;
+            height: auto;
+            padding: 0 1rem;
+        
+            @include flex(column);
+            justify-content: center;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+    }
+}
+
+/* Media query for displaying the bars buttons for mobile devices */
+@media only screen and (max-width: 900px) {
+    .admin-actions-container {
+        width: 100%;
+        padding: 0;
+        
+        position: relative;
+        top: 0;
+        right: 0;
+
+        background-color: $dark-background-color;
+    }
+}

@@ -1,0 +1,9 @@
+@import './../../assets//sass/mixins';
+@import './../../assets//sass/variables';
+
+div.main-feed-container {
+    @include flex(column);
+    gap: 10px; 
+
+    background: linear-gradient(90deg, rgba(25,26,39,1) 0%, rgba(91,214,195,1) 50%, rgba(239,35,60,1) 100%);
+}

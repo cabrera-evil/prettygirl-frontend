@@ -1,0 +1,35 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+section.categoriesContainer {
+    width: 100%;
+    height: auto;
+    padding: 2rem 3rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1fr;
+    grid-template-areas: "title"
+                         "categoryCards";
+
+    background-color: $dark-background-color;
+
+    position: relative;
+
+    .title {
+        font-family: $theme-montserrat;
+        font-size: x-large;
+        color: $general-white;
+    }
+
+    .categoryCards {
+        width: 100%;
+        height: auto;
+        margin: 10px;
+
+        @include flex(row);
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}

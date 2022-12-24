@@ -1,0 +1,22 @@
+@import "../../../../assets/sass/mixins";
+@import "../../../../assets/sass/variables";
+
+.circle {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background-color: $general-white;
+
+    color: $dark-text;
+    font-family: $theme-montserrat;
+
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+}
+
+.colored {
+    background-color: $blue-principal-color;
+}

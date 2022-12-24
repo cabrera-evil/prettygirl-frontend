@@ -1,0 +1,78 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+.formLabel {
+    width: 40%;
+    
+    @include flex(column, true);
+    flex-grow: 1;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+        color: $general-white;
+        font-family: $theme-montserrat;
+        font-size: 15px;
+    }
+}
+
+.productQuantity {
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+
+    label {
+        color: $general-white;
+        font-family: $theme-montserrat;
+        font-size: medium;
+    }
+
+    input {
+        height: 25px;
+        width: 25%;
+    }
+}
+
+.textarea {
+    width: 40%;
+    
+    @include flex(column, true);
+    flex-grow: 1;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+        color: $general-white;
+        font-family: $theme-montserrat;
+        font-size: 15px;
+    }
+
+    textarea {
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+    }
+}
+
+.whole-space {
+    width: 100%;
+
+    @include flex(column, true);
+    flex-grow: 1;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+        color: $general-white;
+        font-family: $theme-montserrat;
+        font-size: 15px;
+    }
+}
+
+/* Media query for increasing label's width */
+@media only screen and (max-width: 900px) {
+    .formLabel {
+        width: 100%;
+    }
+}

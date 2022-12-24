@@ -1,0 +1,81 @@
+@import './../../assets/sass/mixins';
+@import './../../assets/sass/variables';
+
+
+button.continue {
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    border: none;
+
+    background: $blue-principal-color;
+    
+    font-size: 18px;
+    font-family: $theme-montserrat;
+    color: $dark-text;
+
+    &:hover {
+        background: rgba($blue-principal-color, 0.5);
+    }
+}
+
+button.cancel, button.booking_prodcut_card{
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    border: none;
+
+    background: $red-principal-color;
+
+    font-size: 18px;
+    font-family: $theme-montserrat;
+    color: $general-white;
+
+    &:hover {
+        background: rgba($red-principal-color, 0.5);
+    }
+}
+
+button.add-to-bag, button.book_product{
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    border: none;
+
+    background: $red-principal-color;
+
+    font-size: 18px;
+    font-family: $theme-montserrat;
+    color: $general-white;
+
+    &:hover {
+        background: rgba($red-principal-color, 0.5);
+    }
+}
+
+button.reserve {
+    width: 25%;
+    height: 30px;
+
+    border-radius: 20px;
+    border: none;
+
+    background: $blue-principal-color;
+    
+    font-size: 18px;
+    font-family: $theme-montserrat;
+    color: $dark-text;
+
+    &:hover {
+        background: rgba($blue-principal-color, 0.5);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    button.add-to-bag {
+        font-size: small;
+    }
+}

@@ -1,0 +1,28 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+.description-field {
+    @include flex(column);
+
+    div.product-description{
+        @include flex(column);  
+        align-items: center;
+
+        p{
+            color: $general-white;
+            font-family: $theme-montserrat;
+            font-size: medium;
+        }
+    }
+
+    div.delivery-description{
+        @include flex(column);  
+        align-items: center;
+
+        p{
+            color: $general-white;
+            font-family: $theme-montserrat;
+            font-size: medium;
+        }
+    }
+}

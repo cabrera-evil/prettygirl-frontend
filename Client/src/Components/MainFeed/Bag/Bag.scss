@@ -1,0 +1,97 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+section.bag-container {
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+    background-color: $dark-background-color;
+
+    div.cards {
+        width: 100%;
+        height: auto;
+
+        @include flex(row);
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    button.reserve {
+        margin: 2rem;
+    }
+
+    div.information-message {
+        padding: 3rem;
+        @include flex(column);
+        justify-content: center;
+        align-items: center;
+
+        figure {
+            width: 150px;
+            height: 150px;
+
+            position: relative;
+            img {
+                width: 100%;
+                height: 100%;
+
+                position: absolute;
+                object-fit: contain;
+            }
+        }
+        p {
+            font-family: monospace;
+            color: $general-white;
+        }
+    }
+
+    .cards {
+        article.product-card {
+            @include flex(column);
+            position: relative;
+            width: 15rem;
+            gap: 0.3rem;
+
+            p{
+                input{
+                    text-align: center;
+                    width: 40%;
+                }
+            }
+
+            button.delete {
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                right: 0;
+                background-color: transparent;
+
+                figure.delete {
+                    border-radius: 50%;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: end;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        background-color: $red-principal-color;
+                        svg{
+                            fill: $black-background;
+                        }
+                    }
+
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        fill: $red-principal-color;
+                        cursor: pointer;
+                        display: block;
+
+                    }
+                }
+            }
+        }
+    }
+}

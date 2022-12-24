@@ -1,0 +1,12 @@
+@import './../../assets/sass/variables';
+@import './../../assets/sass/mixins';
+
+section.booking-step{
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+    
+    background-color: $dark-background-color;
+
+    position: relative;
+}

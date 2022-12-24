@@ -1,0 +1,33 @@
+@import './../../../assets/sass/mixins';
+@import './../../../assets/sass/variables';
+
+.line {
+    width: 50%;
+
+    align-self: center;
+    border: 1px solid $general-white;
+}
+
+.total {
+    font-size: large;
+    font-weight: lighter
+}
+
+.Second-envio{
+    label {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        font-size: large;
+        font-weight: lighter;
+        
+        input{
+            width: 20px;
+            height: 20px;
+            top: 3px;
+        }
+    }
+
+}

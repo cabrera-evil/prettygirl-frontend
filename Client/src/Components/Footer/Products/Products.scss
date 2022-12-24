@@ -1,0 +1,22 @@
+@import "../../../assets/sass/mixins";
+@import "../../../assets/sass/variables";
+
+.footer-products {
+    margin: 1rem;
+    @include flex(column);
+    justify-content: flex-start;
+
+    h3, p {
+        font-family: $theme-montserrat;
+        color: $general-white; 
+        font-size: small;
+        text-align: center;
+    }
+
+    p{
+        cursor: pointer;
+        &:hover {
+            color: $blue-principal-color;
+        }
+    }
+}

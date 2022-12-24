@@ -1,0 +1,166 @@
+@import '../../assets/sass/mixins';
+@import '../../assets/sass/variables';
+
+div.uploader-container {
+    width: 100%;
+    height: 850px;
+    background-color: $dark-background-color;
+
+    @include flex(column);
+    align-items: center;
+    
+
+    .uploader-wrapper {
+        width: 100%;
+
+        @include flex(column);
+        gap: 1rem;
+
+        .actions {
+            @include flex(column);
+
+            button {
+                align-self: center;
+                width: 80%;
+                height: 30px;
+
+                border-radius: 10px;
+                font-family: $theme-montserrat;
+                font-weight: bolder;
+
+                cursor: pointer;
+            }
+
+            .uploader-space {
+                height: 200px;
+
+                border-radius: 3rem 3rem;
+                border: 3px $general-white dashed;
+                background-color: $dark-background-color;
+
+                font-family: $theme-montserrat;
+                color: $general-white;
+                font-size: x-large;
+                font-weight: bolder;
+
+                cursor: pointer;
+                
+            }
+        }
+
+        .images-container {
+            align-self: center;
+            width: 80%;
+            height: auto;
+            padding: 1rem;
+
+            @include flex(column);
+            justify-content: center;
+            align-items: center;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            background-color: rgba($color: $light-background-color, $alpha: 0.5);
+            border-radius: 10px;
+
+            position: relative;
+
+            .information-message {
+                @include flex(column);
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+
+                figure {
+                    width: 150px;
+                    height: 150px;
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                    }
+                }
+
+                p {
+                    font-family: monospace;
+                    color: $general-white;
+                    text-align: center;
+                }
+            }
+
+            .image-item {
+                width: 100%;
+                height: auto;
+                padding: 1rem;
+    
+                border: 1px $general-white solid;
+                border-radius: 10px;
+    
+                @include flex(row);
+                justify-content: space-between;
+                align-items: center;
+    
+                figure {
+                    width: 150px;
+                    height: 150px;
+    
+                    position: relative;
+    
+                    img {
+                        width: 100%;
+                        height: 100%;
+    
+                        border-radius: 10px;
+    
+                        object-fit:cover;
+                        position: absolute;
+                    }
+                }
+                .image-btn-wrapper {
+                    @include flex(row);
+                    gap: 1rem;
+    
+                    button.delete, button.update{
+                        width: 30px;
+                        height: 30px;
+
+                        border-radius: 5px;
+                        background-color: $general-white;
+    
+                        font-family: $theme-montserrat;
+                        font-size: large;
+                        font-weight: bolder;
+                        color: $general-white;
+    
+                        cursor: pointer;
+                    }
+
+                    button.delete {
+                        background-color: $red-principal-color;
+                    }
+
+                    button.update {
+                        background-color: $blue-principal-color;
+                        color: $black-background;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    div.uploader-container .uploader-wrapper {
+        padding: 1rem;
+    }
+
+    .image-item .details-container {
+        p {
+            font-size: small;
+        }
+    }
+}
