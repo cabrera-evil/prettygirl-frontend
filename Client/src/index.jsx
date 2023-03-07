@@ -8,7 +8,7 @@ import { ProductProvider } from './Contexts/ProductContext';
 import axios from 'axios';
 import { UserProvider } from './Contexts/UserContext';
 
-axios.defaults.baseURL = import.meta.env.VITE_API || "https://prettygirl-api-production.up.railway.app/"
+axios.defaults.baseURL = import.meta.env.VITE_API || "https://prettygirl-api.evildev.link/"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
