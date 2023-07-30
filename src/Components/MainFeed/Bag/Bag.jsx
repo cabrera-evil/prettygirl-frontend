@@ -29,7 +29,7 @@ const Bag = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let url = "/api/auth/validate/" + localStorage.getItem('token');
+      let url = "/auth/validate/" + localStorage.getItem('token');
       await axios.get(url).then(async (res) => {
         const config = {
           headers: {
@@ -37,10 +37,10 @@ const Bag = () => {
           }
         };
         const uid = res.data.uid;
-        await axios.get("/api/bags/" + res.data.uid, config).then(async (data) => {
+        await axios.get("/bags/" + res.data.uid, config).then(async (data) => {
           if (data.data.length > 0) {
             const _id = data.data[0]._id;
-            url = '/api/bags/products/' + data.data[0]._id
+            url = '/bags/products/' + data.data[0]._id
             await axios.get(url, config).then((res) => {
               let fields = [
                 {
@@ -109,7 +109,7 @@ const Bag = () => {
           })
         }
       })
-      let url = "/api/bags/" + Products[0].bag;
+      let url = "/bags/" + Products[0].bag;
       const config = {
         headers: {
           'x-token': localStorage.getItem("token")

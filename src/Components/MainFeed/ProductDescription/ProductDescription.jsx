@@ -18,7 +18,7 @@ function ProductDescription({ id }) {
   const [formFields, setFields] = useState([]);
   const [dinamycfields, setDinamycFields] = useState();
 
-  const url = "/api/products/" + id;
+  const url = "/products/" + id;
   const [encontrado, setEncontrado] = useState(false);
   const [loading, setLoading] = useState(true);
   const context = useConfigContext();
@@ -242,10 +242,10 @@ async function PushBag(id, color, talla, setColor, setTalla) {
   if (color !== 'Selecciona un color' && talla !== 'Selecciona una talla') {
     if (!agregando) {
       agregando = true;
-      let url = "/api/auth/validate/" + localStorage.getItem("token");
+      let url = "/auth/validate/" + localStorage.getItem("token");
       await axios.get(url).then(TokenData => {
         if (TokenData.data.exp >= moment().unix()) {
-          url = "/api/bags/" + TokenData.data.uid;
+          url = "/bags/" + TokenData.data.uid;
           const config = {
             headers: {
               'x-token': localStorage.getItem("token")
@@ -254,7 +254,7 @@ async function PushBag(id, color, talla, setColor, setTalla) {
           axios.get(url, config).then((datos) => {
             console.log(datos.data.length)
             if (datos.data.length == 0) {
-              url = "/api/bags/";
+              url = "/bags/";
               const config = {
                 headers: {
                   'x-token': localStorage.getItem("token")
@@ -298,7 +298,7 @@ async function PushBag(id, color, talla, setColor, setTalla) {
               )
             }
             else {
-              url = "/api/bags/" + datos.data[0]._id;
+              url = "/bags/" + datos.data[0]._id;
               const config = {
                 headers: {
                   'x-token': localStorage.getItem("token")

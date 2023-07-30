@@ -7,7 +7,7 @@ import Loading from '../../Loading/Loading';
 const CategoriesContainer = ({handleCategoryClick}) => {
   const [categories, setCategories] = useState([]);
   const [cargado, setCargado] = useState(false);
-  const url = "/api/categories";
+  const url = "/categories";
 
   useEffect(() => {
     const getData = async () => {

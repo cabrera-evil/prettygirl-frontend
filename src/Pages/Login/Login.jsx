@@ -18,7 +18,7 @@ function Login() {
     const [password, setPassword] = useState('');
 
     const handleSubmit = () => {
-        const url = "/api/auth/login"
+        const url = "/auth/login"
         
         const body = { "email":email, "password":password };
         axios.post(url, body)

@@ -14,7 +14,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Accesorios"
+            filteredUrl: "/products?category=Accesorios"
           }
         })
       }}>Accesorios</p>
@@ -25,7 +25,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Bikini"
+            filteredUrl: "/products?category=Bikini"
           }
         })
       }}>Bikinis</p>
@@ -36,7 +36,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Bolsos"
+            filteredUrl: "/products?category=Bolsos"
           }
         })
       }}>Bolsos</p>
@@ -47,7 +47,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Camisas"
+            filteredUrl: "/products?category=Camisas"
           }
         })
       }}>Camisas</p>
@@ -58,7 +58,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Lentes"
+            filteredUrl: "/products?category=Lentes"
           }
         })
       }}>Lentes</p>
@@ -69,7 +69,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Pantalones"
+            filteredUrl: "/products?category=Pantalones"
           }
         })
       }}>Pantalones</p>
@@ -80,7 +80,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Shorts"
+            filteredUrl: "/products?category=Shorts"
           }
         })
       }}>Shorts</p>
@@ -91,7 +91,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Vestidos"
+            filteredUrl: "/products?category=Vestidos"
           }
         })
       }}>Vestidos</p>
@@ -102,7 +102,7 @@ const Products = () => {
         // Navigate to the filtered page
         navigate('/feed/filtered', {
           state: {
-            filteredUrl: "/api/products?category=Zapatos"
+            filteredUrl: "/products?category=Zapatos"
           }
         })
       }}>Zapatos</p>

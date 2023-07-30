@@ -13,7 +13,7 @@ const Body = () => {
 
   // Navigate to products filtered by selected category
   const navigate = useNavigate();
-  const url = `/api/products?category=${categoryClicked}`;
+  const url = `/products?category=${categoryClicked}`;
 
   const handleCategoryClick = (value) => {
     setCategoryClicked(value);

@@ -32,10 +32,10 @@ const AddProduct = () => {
   const [_size, _setSize] = useState(true);
   const [formData, setFormData] = useState(new FormData());
   const [loading, setLoading] = useState(true);
-  const url = "/api/categories/";
+  const url = "/categories/";
 
   const handleSubmit = async () => {
-    const url = "/api/products";
+    const url = "/products";
     const token = localStorage.getItem('token');
 
     // Header variables configuration

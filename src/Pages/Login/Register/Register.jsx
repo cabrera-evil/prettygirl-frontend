@@ -12,7 +12,7 @@ function Registro() {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        const url = "/api/users";
+        const url = "/users";
 
         const body = {
             "name": name,

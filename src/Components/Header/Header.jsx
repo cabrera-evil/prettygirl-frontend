@@ -52,7 +52,7 @@ const Header = () => {
                                         // Navigate to the filtered page
                                         navigate('/feed/filtered', {
                                             state: {
-                                                filteredUrl: "/api/products?gender=Masculino&gender=Unisex"
+                                                filteredUrl: "/products?gender=Masculino&gender=Unisex"
                                             }
                                         })
                                     }
@@ -65,7 +65,7 @@ const Header = () => {
                                         // Navigate to the filtered page
                                         navigate('/feed/filtered', {
                                             state: {
-                                                filteredUrl: "/api/products?gender=Femenino&gender=Unisex"
+                                                filteredUrl: "/products?gender=Femenino&gender=Unisex"
                                             }
                                         })
                                     }
@@ -80,7 +80,7 @@ const Header = () => {
                                         // Navigate to the filtered page
                                         navigate('/feed/filtered', {
                                             state: {
-                                                filteredUrl: "/api/products?gender=Masculino&gender=Unisex"
+                                                filteredUrl: "/products?gender=Masculino&gender=Unisex"
                                             }
                                         })
                                     }
@@ -93,7 +93,7 @@ const Header = () => {
                                         // Navigate to the filtered page
                                         navigate('/feed/filtered', {
                                             state: {
-                                                filteredUrl: "/api/products?gender=Femenino&gender=Unisex"
+                                                filteredUrl: "/products?gender=Femenino&gender=Unisex"
                                             }
                                         })
                                     }

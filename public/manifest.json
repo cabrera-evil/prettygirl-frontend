@@ -1,0 +1,20 @@
+{
+    "name": "PrettyGirl Store",
+    "short_name": "PrettyGirl",
+    "description": "Clothing Store",
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#ffffff",
+    "background_color": "#a7bcff",
+    "scope": "/",
+    "id": "/",
+    "icons": [
+        {
+            "src": "favicon.jpg",
+            "sizes": "512x512",
+            "type": "image/jpg"
+        }
+    ]
+}

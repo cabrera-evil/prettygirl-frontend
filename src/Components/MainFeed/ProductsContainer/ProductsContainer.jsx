@@ -9,10 +9,10 @@ import Loading from '../../Loading/Loading';
 const ProductsContainer = ({ id, title, bag=false }) => {
   const [products, setProducts] = useState([]);
   const [cargado, setCargado] = useState(false);
-  let url = "/api/products/";
+  let url = "/products/";
   
   if(title == 'Recién llegados'){
-    url = "/api/products?limit=5";
+    url = "/products?limit=5";
   }
 
   useEffect(() => {

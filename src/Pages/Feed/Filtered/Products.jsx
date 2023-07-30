@@ -7,7 +7,7 @@ import axios from "axios";
 
 const ProductsContainer = () => {
     const [products, setProducts] = useState([]);
-    const url = "/api/products";
+    const url = "/products";
 
     useEffect(() => {
         const getData = async () => {

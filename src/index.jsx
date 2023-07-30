@@ -4,11 +4,10 @@ import App from './App'
 import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import { ConfigProvider } from './Contexts/ConfigContext';
-import { ProductProvider } from './Contexts/ProductContext';
 import axios from 'axios';
 import { UserProvider } from './Contexts/UserContext';
 
-axios.defaults.baseURL = import.meta.env.VITE_API || "https://prettygirl-api.cabrera-dev.com/"
+axios.defaults.baseURL = import.meta.env.VITE_API || "http://localhost:3000"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

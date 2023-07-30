@@ -125,7 +125,7 @@ const SecondStep = ({ onLoad }) => {
         updatedAt: new Date()
       }
       data.description.products.splice(0, 1);
-      let url = '/api/bookings';
+      let url = '/bookings';
       const config = {
         headers: {
           'x-token': localStorage.getItem("token")
@@ -133,7 +133,7 @@ const SecondStep = ({ onLoad }) => {
       };
       axios.post(url, data, config).then((res) => {
         if (res.status === 200) {
-          url = "/api/bags/" + Products[0].bag;
+          url = "/bags/" + Products[0].bag;
           axios.delete(url, config).then((res) => {
             if (res.status === 200) {
               localStorage.removeItem("products");

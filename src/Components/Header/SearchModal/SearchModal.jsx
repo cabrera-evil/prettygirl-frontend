@@ -5,10 +5,10 @@ import './SearchModal.scss'
 
 const SearchModal = ({ cancelSearch }) => {
     // Url to get the categories from the API
-    const categoriesUrl = "/api/categories";
+    const categoriesUrl = "/categories";
 
     // Url to get filtered products from the API
-    let url = "/api/products?";
+    let url = "/products?";
     let filterFlag = false;
 
     // Navigate to the filtered products page function
