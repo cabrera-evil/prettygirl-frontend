@@ -1,7 +1,8 @@
 {
   "name": "prettygirl-client",
-  "private": true,
-  "version": "0.0.0",
+  "homepage": "https://prettygirl.cabrera-dev.com",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
